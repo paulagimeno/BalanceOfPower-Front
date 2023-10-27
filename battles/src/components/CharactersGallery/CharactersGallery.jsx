@@ -6,6 +6,8 @@ import axios from 'axios';
 const CharactersGallery = ({data}) => {
 
     const [characters, setCharacters] = useState([]);
+    const [fighter1, setFighter1] = useState()
+    const [fighter2, setFighter2] = useState()
 
     useEffect(() => {
         const getCharacter = async () => {
@@ -18,10 +20,21 @@ const CharactersGallery = ({data}) => {
 
     }, []);
 
+    const handleFighters = (i) => {
+    if (fighter1){
+        setFighter2(data[i]) 
+    } else {
+        setFighter1(data[i])
+    }
+    }
+
+    console.log( 'fighter 1 is', fighter1)
+    console.log('fighter2 is', fighter2)
+
     return (
             <div className='character-container' >
                 {data.map((item, i) => (
-                    <div key={i}>  
+                    <div key={i} onClick={() =>handleFighters(i)}>  
                         <img src={item.avatarImage} alt='' />
                         <div>{item.name}</div>
                     </div>
