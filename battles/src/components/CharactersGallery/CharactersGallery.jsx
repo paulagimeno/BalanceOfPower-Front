@@ -9,12 +9,8 @@ const CharactersGallery = ({data}) => {
 
     useEffect(() => {
         const getCharacter = async () => {
-            const res = await axios('http://localhost:5051/characters');
-            const imageURLs = res.data.map(character => ({
-                ...character,
-                image: `http://localhost:3000${character.avatarImage}`
-            }));
-            setCharacters(imageURLs);
+            const {data} = await axios('http://localhost:5051/characters/characters');
+            setCharacters(data);
 
         }
 
@@ -23,16 +19,14 @@ const CharactersGallery = ({data}) => {
     }, []);
 
     return (
-        <div>
             <div className='character-container' >
-                {data.map((character, i) => (
+                {data.map((item, i) => (
                     <div key={i}>  
-                        <img src={character.avatarImage} alt='' />
-                        <div>{character.name}</div>
+                        <img src={item.avatarImage} alt='' />
+                        <div>{item.name}</div>
                     </div>
                 ))};
             </div>    
-        </div>
     )
 }
 
