@@ -5,6 +5,7 @@ import CharacterSelectionPage from './pages/CharacterSelectionPage/CharacterSele
 import ShopPage from './pages/ShopPage/ShopPage';
 import FightingArena from './pages/FightingArena/FightingArena';
 import { useLocation } from 'react-router-dom';
+import "../src/styles/main/style.css";
 
 function App() {
   return (
