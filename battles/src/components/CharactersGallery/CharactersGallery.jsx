@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
+
 const CharactersGallery = ({data}) => {
 
     const [characters, setCharacters] = useState([]);
@@ -34,7 +35,8 @@ const CharactersGallery = ({data}) => {
     return (
             <div className='character-container' >
                 {data.map((item, i) => (
-                    <div key={i} onClick={() =>handleFighters(i)}>  
+                    <div key={i} onClick={() =>handleFighters(i)} 
+                    className={`character-item ${fighter1 === data[i] ? 'red-border' : '' } ${fighter2 === data[i] ? 'blue-border' : '' }`}>  
                         <img src={item.avatarImage} alt='' />
                         <div>{item.name}</div>
                     </div>
