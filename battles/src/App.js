@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage/HomePage'
 import CharacterSelectionPage from './pages/CharacterSelectionPage/CharacterSelectionPage';
 import ShopPage from './pages/ShopPage/ShopPage';
 import FightingArena from './pages/FightingArena/FightingArena';
+import { useLocation } from 'react-router-dom';
 
 function App() {
   return (
