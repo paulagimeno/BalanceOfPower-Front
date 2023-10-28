@@ -24,14 +24,14 @@ const CharactersGallery = ({data}) => {
 
     const handleFighters = (i) => {
 
-        if (fighter1 === data[i]){
+        if (fighter1 === characters[i]){
             setFighter1(null);
-        } else if (fighter2 === data[i]) {
+        } else if (fighter2 === characters[i]) {
             setFighter2(null);
         } else if (fighter1 === null) {
-            setFighter1(data[i]);
+            setFighter1(characters[i]);
         } else if (fighter2 === null) {
-            setFighter2(data[i]);
+            setFighter2(characters[i]);
         }
     }
 
@@ -40,7 +40,7 @@ const CharactersGallery = ({data}) => {
 
     return (<div>
             <div className='character-container' >
-                {data.map((item, i) => (
+                {characters.map((item, i) => (
                     <div key={i} onClick={() =>handleFighters(i)} 
 
                         className={`character-item ${fighter1 === characters[i] ? 'fighter1' : '' } ${fighter2 === characters[i] ? 'fighter2' : '' }`}>  
