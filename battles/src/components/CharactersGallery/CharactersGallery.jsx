@@ -5,12 +5,11 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 
-
 const CharactersGallery = ({data}) => {
 
     const [characters, setCharacters] = useState([]);
-    const [fighter1, setFighter1] = useState()
-    const [fighter2, setFighter2] = useState()
+    const [fighter1, setFighter1] = useState(null)
+    const [fighter2, setFighter2] = useState(null)
 
     useEffect(() => {
         const getCharacter = async () => {
@@ -24,11 +23,16 @@ const CharactersGallery = ({data}) => {
     }, []);
 
     const handleFighters = (i) => {
-    if (fighter1){
-        setFighter2(data[i]) 
-    } else {
-        setFighter1(data[i])
-    }
+
+        if (fighter1 === data[i]){
+            setFighter1(null);
+        } else if (fighter2 === data[i]) {
+            setFighter2(null);
+        } else if (fighter1 === null) {
+            setFighter1(data[i]);
+        } else if (fighter2 === null) {
+            setFighter2(data[i]);
+        }
     }
 
     console.log( 'fighter 1 is', fighter1)
@@ -38,9 +42,12 @@ const CharactersGallery = ({data}) => {
             <div className='character-container' >
                 {data.map((item, i) => (
                     <div key={i} onClick={() =>handleFighters(i)} 
-                    className={`character-item ${fighter1 === characters[i] ? 'red-border' : '' } ${fighter2 === characters[i] ? 'blue-border' : '' }`}>  
-                        <img src={item.avatarImage} alt='' />
-                        <div>{item.name}</div>
+
+                        className={`character-item ${fighter1 === characters[i] ? 'fighter1' : '' } ${fighter2 === characters[i] ? 'fighter2' : '' }`}>  
+                        <img className='character-img' src={item.avatarImage} alt='' />
+                        <div className='character-overlay'>
+                            <div className='character-name'>{item.name}</div>
+                        </div>
                     </div>
                 ))};
             </div>  
