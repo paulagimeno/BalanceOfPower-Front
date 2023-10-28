@@ -1,4 +1,5 @@
 import './App.css';
+import '../src/styles/main/style.css'
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage'
 import CharacterSelectionPage from './pages/CharacterSelectionPage/CharacterSelectionPage'
