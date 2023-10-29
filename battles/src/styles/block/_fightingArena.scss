@@ -1,0 +1,46 @@
+.arena_body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(255, 181, 71, 0.889);
+
+    .arena_fighter1, .arena_fighter2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    img {
+        width: 500px; 
+        height: 500px; 
+        object-fit: cover; 
+        clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%);
+    }
+
+    p {
+        font-size: 1.5rem; 
+        color: aliceblue;
+        font-weight: bold;
+    }
+
+    .arena_battle {
+        width: 50%;
+        height: 80vh;
+        border: 3px solid rgba(255, 255, 255, 0.8);
+    }
+
+    button {
+        display: inline-block;
+        padding: 10px 20px; 
+        font-size: 1rem; 
+        background-color: rgba(255, 255, 255, 0.8); 
+        color: #333; 
+        border: none;
+        cursor: pointer;
+    }
+}
+

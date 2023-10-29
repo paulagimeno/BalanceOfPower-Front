@@ -1,5 +1,5 @@
 .character-container  {
-    background-color: rgba(255, 183, 106, 0.822);
+    background: linear-gradient(to bottom, #D2B48C, #8B4513);
     display: flex;
     flex-wrap: wrap;
     gap: 0.8vw;
@@ -15,8 +15,9 @@
 
     .character-img {
         display: block;
-        width: 230px;
+        width: 229px;
         height: 310px;
+        border-radius: 5px;
         object-fit: cover;
     }
 
@@ -25,13 +26,13 @@
         position: absolute;
         background-color: #2b2b2b72;
         overflow: hidden;
-        bottom: 0px;
-        width: 230px;
+        bottom: 0;
+        width: 250px;
         height: 0;
         transition: .3s ease;
         color: white;
-        border-top: 1px solid rgba(255, 183, 106, 0.822);
-        border-bottom: 1px solid rgba(255, 183, 106, 0.822);
+        border-top: 2px solid rgba(255, 183, 106, 0.822);
+        border-bottom: 2px solid rgba(255, 183, 106, 0.822);
         
     }
 
@@ -51,7 +52,8 @@
         position: relative;
         border: 5px solid transparent;
         transform: scale(1.1);
-        border-image: linear-gradient(to right, rgb(255, 140, 0), rgb(255, 212, 85), rgb(255, 120, 2));
+        border-image: linear-gradient(to right, rgb(255, 166, 0), rgb(255, 193, 7), rgb(202, 145, 0));
+        border-radius: 5px;
         border-image-slice: 1;
         
 }
@@ -59,6 +61,7 @@
 .character-item:hover {
     transform: scale(1.1);
     overflow: hidden;
+    border-radius: 10px;
     /* transform: rotate(5deg) */
     
 }
@@ -73,5 +76,7 @@
     
     
 }
+
+
 
 }
