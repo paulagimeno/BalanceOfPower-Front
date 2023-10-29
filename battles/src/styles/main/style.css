@@ -59,4 +59,32 @@
   display: block;
   transform: rotate(5deg);
   overflow: hidden;
+}
+
+.arena_body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.arena_fighter1 {
+  width: 20vw;
+}
+
+.arena_fighter2 {
+  width: 20vw;
+}
+
+.arena_battle {
+  width: 60vw;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.fighters {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
 }/*# sourceMappingURL=style.css.map */
