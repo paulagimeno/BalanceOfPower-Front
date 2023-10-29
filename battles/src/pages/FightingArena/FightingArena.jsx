@@ -21,7 +21,7 @@ const abilities = {
         defender.hp -= damage;
         return `${attacker.name} used Strike and dealt ${damage} damage.`;
     }, 
-    Execute: (attacker, defender) => {
+    execute: (attacker, defender) => {
         const randomNum = Math.floor(Math.random() * 20) + 1;
         if (randomNum === 1) {
             const damage = defender.hp;
@@ -31,12 +31,14 @@ const abilities = {
             return `${attacker.name}'s attack missed!`
         }
     }, 
-    Heal: (attacker, defender) => {
+    heal: (attacker, defender) => {
         const recover = calculateRecover(attacker.strenght, attacker.crit);
         attacker.hp += recover; 
         return `${attacker.name} used Heal and recovered ${recover} Health Points.`
     }, 
-    Block: 
+    block: () => {
+
+    }
 
 }
  
@@ -75,22 +77,53 @@ const battle = () => {
 
     steps.push(`${fighter1.name} and ${fighter2.name} are ready for battle!`);
 
+
+
     while (fighter1HP > 0 && fighter2HP > 0) {
-      const attacker = turn;
-      const defender = attacker === fighter1 ? fighter2 : fighter1;
+      let attacker;
+      if (fighter1.speed > fighter2.speed) {
+        attacker = fighter1;
+      } else if (fighter1.speed < fighter2.speed) {
+        attacker = fighter2;
+      } else {
+        const randomNumber = Math.floor(Math.random() * 2) + 1;
+        if (randomNumber === 1) {
+          attacker = fighter1;
+        } else {
+          attacker = fighter2;
+        }
+      } 
+
+      let defender = attacker === fighter1 ? fighter2 : fighter1;
 
       
       steps.push(`It's ${attacker.name}'s turn.`);
-      steps.push('Choose an ability:');
+      steps.push('Choose your next move:');
 
       
       if (attacker === playerChoice) {
-        steps.push(
+            if (attacker.category === 'DPS'){
+             steps.push(   
           <>
-            <button onClick={() => chooseAbility('ability1', attacker, defender)}>Ability 1</button>
-            <button onClick={() => chooseAbility('ability2', attacker, defender)}>Ability 2</button>
+            <button onClick={() => chooseAbility('strike', attacker, defender)}>Strike</button>
+            <button onClick={() => chooseAbility('execute', attacker, defender)}>Execute</button>
           </>
         );
+            } else if (attacker.category === 'Healer'){
+                steps.push(   
+                    <>
+                      <button onClick={() => chooseAbility('strike', attacker, defender)}>Strike</button>
+                      <button onClick={() => chooseAbility('heal', attacker, defender)}>Heal</button>
+                    </>
+                  );
+            } else if (attacker.category === 'Tank'){
+                steps.push(   
+                    <>
+                      <button onClick={() => chooseAbility('strike', attacker, defender)}>Strike</button>
+                      <button onClick={() => chooseAbility('block', attacker, defender)}>Block</button>
+                    </>
+                  );
+            }
       }
 
       
@@ -107,11 +140,16 @@ const battle = () => {
     }
 
     
-    const winner = fighter1HP > 0 ? fighter1 : fighter2;
-    steps.push(`${winner.name} wins the battle!`);
-
+    if (fighter1.hp <= 0 || fighter2.hp <= 0){
+        const winner = fighter1.hp > 0 ? fighter1 : fighter2;
+        steps.push(`${winner.name} won the battle!`);
+    }
     setBattleStarted(true);
     setBattleSteps(steps);
+  }
+
+  const chooseAbility = (ability, attacker, defender) => {
+    setPlayerChoice(attacker);
   }
 
 
@@ -131,6 +169,7 @@ const battle = () => {
         <div className="arena_fighter1">
         <p>{fighter1 ? fighter1.name : 'Not selected'}</p>
         <img className="fighters" src={fighter1.fullBodyImage} alt=''/>
+        <p>HP: {fighter1HP}</p>
         </div>
         <div className="arena_battle">{!battleStarted ? (
             <button className="startFight" onClick={battle}>FIGHT!</button>
@@ -141,8 +180,8 @@ const battle = () => {
         <div className="arena_fighter2">
         <p>{fighter2 ? fighter2.name : 'Not selected'}</p>
         <img className="fighters" src={fighter2.fullBodyImage} alt=''/>
+        <p>HP: {fighter2HP}</p>
         </div>
         </div> 
-
     )
 }
