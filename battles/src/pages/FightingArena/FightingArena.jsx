@@ -9,7 +9,9 @@ export default function FightingArena() {
   const [battleSteps, setBattleSteps] = useState([]);
   const [currentStep, setCurrentStep] = useState(0);
   const [turn, setTurn] = useState();
-  const [playerChoice, setPlayerChoice] = useState(null);
+  const [playerChoice, setPlayerChoice] = useState("");
+  const [attacker, setAttacker] = useState();
+  const [defender, setDefender] = useState();
 
   const [fighter1HP, setFighter1HP] = useState(fighter1.hp);
   const [fighter2HP, setFighter2HP] = useState(fighter2.hp);
@@ -22,6 +24,7 @@ export default function FightingArena() {
         defender.defense
       );
       defender.hp -= damage;
+      console.log("holita");
       return `${attacker.name} used Strike and dealt ${damage} damage.`;
     },
     execute: (attacker, defender) => {
@@ -75,97 +78,96 @@ export default function FightingArena() {
   const battle = () => {
     const steps = [];
 
+    setBattleStarted(true);
+    setBattleSteps(steps);
+
     steps.push(`${fighter1.name} and ${fighter2.name} are ready for battle!`);
 
     const battleStep = () => {
-    if (fighter1.hp > 0 && fighter2.hp > 0) {
-      let attacker;
-      if (fighter1.speed > fighter2.speed) {
-        attacker = fighter1;
-      } else if (fighter1.speed < fighter2.speed) {
-        attacker = fighter2;
-      } else {
-        const randomNumber = Math.floor(Math.random() * 2) + 1;
-        if (randomNumber === 1) {
+      if (fighter1.hp > 0 && fighter2.hp > 0) {
+        let attacker;
+        if (fighter1.speed > fighter2.speed) {
           attacker = fighter1;
-        } else {
+        } else if (fighter1.speed < fighter2.speed) {
           attacker = fighter2;
+        } else {
+          const randomNumber = Math.floor(Math.random() * 2) + 1;
+          if (randomNumber === 1) {
+            attacker = fighter1;
+          } else {
+            attacker = fighter2;
+          }
         }
-      }
 
-      let defender = attacker === fighter1 ? fighter2 : fighter1;
+        let defender = attacker === fighter1 ? fighter2 : fighter1;
 
-      steps.push(`It's ${attacker.name}'s turn.`);
-      steps.push("Choose your next move:");
+        setAttacker(attacker);
+        setDefender(defender);
 
-      if (attacker === playerChoice) {
+        steps.push(`It's ${attacker.name}'s turn.`);
+        steps.push("Choose your next move:");
+
         if (attacker.category === "DPS") {
           steps.push(
-            <>
-              <button
-                onClick={() => chooseAbility("strike", attacker, defender)}
-              >
-                Strike
-              </button>
-              <button
-                onClick={() => chooseAbility("execute", attacker, defender)}
-              >
-                Execute
-              </button>
-            </>
+            <div>
+              <button onClick={() => chooseAbility("Strike", attacker, defender)}>Strike</button>
+              <button onClick={() => chooseAbility("execute", attacker, defender)}>Execute</button>
+            </div>
           );
         } else if (attacker.category === "Healer") {
           steps.push(
-            <>
-              <button
-                onClick={() => chooseAbility("strike", attacker, defender)}
-              >
-                Strike
-              </button>
-              <button onClick={() => chooseAbility("heal", attacker, defender)}>
-                Heal
-              </button>
-            </>
+            <div>
+              <button onClick={() => chooseAbility("strike", attacker, defender)}>Strike</button>
+              <button onClick={() => chooseAbility("heal", attacker, defender)}>Heal</button>
+            </div>
           );
         } else if (attacker.category === "Tank") {
           steps.push(
-            <>
-              <button
-                onClick={() => chooseAbility("strike", attacker, defender)}
-              >
-                Strike
-              </button>
-              <button
-                onClick={() => chooseAbility("block", attacker, defender)}
-              >
-                Block
-              </button>
-            </>
+            <div>
+              <button onClick={() => chooseAbility("strike", attacker, defender)}>Strike</button>
+              <button onClick={() => chooseAbility("block", attacker, defender)}>Block</button>
+            </div>
           );
         }
+        
+       
+        
+
+        setTurn(attacker === fighter1 ? fighter2 : fighter1);
+      } else if (fighter1.hp <= 0 || fighter2.hp <= 0) {
+        const winner = fighter1.hp > 0 ? fighter1 : fighter2;
+        steps.push(`${winner.name} won the battle!`);
       }
+    };
 
-      if (playerChoice === attacker) {
-        const abilityResult = abilities[playerChoice](attacker, defender);
-        steps.push(abilityResult);
-
-        setPlayerChoice(null);
-      }
-
-      setTurn(attacker === fighter1 ? fighter2 : fighter1);
-    } else if (fighter1.hp <= 0 || fighter2.hp <= 0) {
-      const winner = fighter1.hp > 0 ? fighter1 : fighter2;
-      steps.push(`${winner.name} won the battle!`);
-    }
-    }
-    setBattleStarted(true);
-    setBattleSteps(steps);
     battleStep();
   };
 
-  const chooseAbility = (ability, attacker, defender) => {
-    setPlayerChoice(attacker);
+  const chooseAbility = (data, attacker, defender) => {
+    console.log("holiwis");
+    setPlayerChoice(data);
+    console.log(data);
+    executeAttack(data, attacker, defender)
   };
+
+  const executeAttack = (playerChoice, attacker, defender) => {
+      if (playerChoice === "Strike") {
+        console.log(attacker)
+        const abilityResult = abilities.strike(attacker, defender);
+        console.log(defender.hp)
+        setBattleSteps((prevSteps) => [...prevSteps, abilityResult]);
+        setPlayerChoice("");
+      } else if (playerChoice === "execute") {
+        const abilityResult = abilities.execute(attacker, defender);
+        setBattleSteps((prevSteps) => [...prevSteps, abilityResult]);
+        setPlayerChoice("");
+      } else if (playerChoice === "heal") {
+        const abilityResult = abilities.heal(attacker, defender);
+        setBattleSteps((prevSteps) => [...prevSteps, abilityResult]);
+        setPlayerChoice("");
+      }
+    }
+  
 
   useEffect(() => {
     if (battleStarted && currentStep < battleSteps.length - 1) {
@@ -190,7 +192,7 @@ export default function FightingArena() {
             FIGHT!
           </button>
         ) : (
-          <p>{battleSteps[currentStep]}</p>
+          <div>{battleSteps[currentStep]}</div>
         )}
       </div>
       <div className="arena_fighter2">
