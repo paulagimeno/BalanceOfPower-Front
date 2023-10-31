@@ -8,13 +8,10 @@ export default function FightingArena() {
   console.log(location.state);
   const [battleSteps, setBattleSteps] = useState([]);
   const [currentStep, setCurrentStep] = useState(0);
-  const [turn, setTurn] = useState();
   const [playerChoice, setPlayerChoice] = useState("");
   const [attacker, setAttacker] = useState();
   const [defender, setDefender] = useState();
 
-  const [fighter1HP, setFighter1HP] = useState(fighter1.hp);
-  const [fighter2HP, setFighter2HP] = useState(fighter2.hp);
 
   const abilities = {
     strike: (attacker, defender) => {
@@ -24,11 +21,10 @@ export default function FightingArena() {
         defender.defense
       );
       defender.hp -= damage;
-      console.log("holita");
       return `${attacker.name} used Strike and dealt ${damage} damage.`;
     },
     execute: (attacker, defender) => {
-      const randomNum = Math.floor(Math.random() * 20) + 1;
+      const randomNum = Math.floor(Math.random() * 10) + 1;
       if (randomNum === 1) {
         const damage = defender.hp;
         defender.hp -= damage;
@@ -75,6 +71,8 @@ export default function FightingArena() {
     return recover;
   };
 
+  
+
   const battle = () => {
     const steps = [];
 
@@ -102,7 +100,7 @@ export default function FightingArena() {
         setAttacker(attacker);
         setDefender(defender);
 
-    const battleStep = () => {
+    const battleStep = (attacker, defender) => {
       if (fighter1.hp > 0 && fighter2.hp > 0) {
         
 
@@ -132,6 +130,7 @@ export default function FightingArena() {
           );
         }
         
+        
       } else if (fighter1.hp <= 0 || fighter2.hp <= 0) {
         const winner = fighter1.hp > 0 ? fighter1 : fighter2;
         steps.push(`${winner.name} won the battle!`);
@@ -139,7 +138,6 @@ export default function FightingArena() {
     };
 
     const chooseAbility = (data, attacker, defender) => {
-    console.log("holiwis");
     setPlayerChoice(data);
     console.log(data);
     executeAttack(data, attacker, defender)
@@ -147,10 +145,9 @@ export default function FightingArena() {
 
   const executeAttack = (playerChoice, attacker, defender) => {
       if (playerChoice === "Strike") {
-        console.log(attacker)
         const abilityResult = abilities.strike(attacker, defender);
         console.log(`${defender.name} hp is ${defender.hp}`)
-        setBattleSteps((prevSteps) => [...prevSteps, abilityResult]);
+        steps.push(abilityResult);
         console.log(steps);
         setPlayerChoice("");
         attacker = attacker === fighter1 ? fighter2 : fighter1;
@@ -158,50 +155,56 @@ export default function FightingArena() {
         setAttacker(attacker);
         setDefender(defender);
         console.log(`now the attacker will be ${attacker.name}`);
-        battleStep();
-        
+        battleStep(attacker, defender); 
       } else if (playerChoice === "Execute") {
         const abilityResult = abilities.execute(attacker, defender);
         console.log(`${defender.name} hp is ${defender.hp}`)
-        setBattleSteps((prevSteps) => [...prevSteps, abilityResult]);
+        steps.push(abilityResult);
+        console.log(steps);
         setPlayerChoice("");
         attacker = attacker === fighter1 ? fighter2 : fighter1;
         defender = attacker === fighter2 ? fighter1 : fighter2;
         setAttacker(attacker);
         setDefender(defender);
-        battleStep();
+        console.log(`now the attacker will be ${attacker.name}`);
+        battleStep(attacker, defender);
       } else if (playerChoice === "Heal") {
         const abilityResult = abilities.heal(attacker, defender);
         console.log(`${defender.name} hp is ${defender.hp}`)
-        setBattleSteps((prevSteps) => [...prevSteps, abilityResult]);
+        steps.push(abilityResult);
+        console.log(steps);
         setPlayerChoice("");
         attacker = attacker === fighter1 ? fighter2 : fighter1;
         defender = attacker === fighter2 ? fighter1 : fighter2;
         setAttacker(attacker);
         setDefender(defender);
-        battleStep();
+        console.log(`now the attacker will be ${attacker.name}`);
+        battleStep(attacker, defender);
       }
     }
 
-    battleStep();
+    battleStep(attacker, defender);
   };
 
   useEffect(() => {
-    if (battleStarted && currentStep < battleSteps.length - 1) {
+    if (battle && currentStep < battleSteps.length - 1) {
       const timer = setTimeout(() => {
         setCurrentStep(currentStep + 1);
+        console.log(currentStep)
       }, 2000);
 
       return () => clearTimeout(timer);
     }
-  }, [battleStarted, currentStep, battleSteps]);
+  }, [battleSteps, currentStep, battle]);
+
+  
 
   return (
     <div className="arena_body">
       <div className="arena_fighter1">
         <p>{fighter1 ? fighter1.name : "Not selected"}</p>
         <img className="fighters" src={fighter1.fullBodyImage} alt="" />
-        <p>HP: {fighter1HP}</p>
+        <p>HP: {fighter1.hp}</p>
       </div>
       <div className="arena_battle">
         {!battleStarted ? (
@@ -215,8 +218,10 @@ export default function FightingArena() {
       <div className="arena_fighter2">
         <p>{fighter2 ? fighter2.name : "Not selected"}</p>
         <img className="fighters" src={fighter2.fullBodyImage} alt="" />
-        <p>HP: {fighter2HP}</p>
+        <p>HP: {fighter2.hp}</p>
       </div>
     </div>
   );
 }
+
+
