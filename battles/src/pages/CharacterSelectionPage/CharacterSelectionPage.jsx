@@ -1,6 +1,6 @@
 import axios from 'axios';
 import CharactersGallery from '../../components/CharactersGallery/CharactersGallery';
-import { useEffect, useState } from 'react';
+import { useDeferredValue, useEffect, useState } from 'react';
 
 export default function CharacterSelectionPage(){
 
