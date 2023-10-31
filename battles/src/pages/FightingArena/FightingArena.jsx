@@ -38,7 +38,11 @@ export default function FightingArena() {
       attacker.hp += recover;
       return `${attacker.name} used Heal and recovered ${recover} Health Points.`;
     },
-    block: () => {},
+    block: (attacker, defender) => {
+    const extraHP = attacker.defense; // Modify as needed.
+    attacker.extraHP = extraHP;
+    return `${attacker.name} used Shield and gained a ${extraHP} points of shield.`;
+    },
   };
 
   const calculateDamage = (strength, crit, defense) => {
@@ -52,7 +56,7 @@ export default function FightingArena() {
       critMultiplier = 0;
     }
 
-    const damage = baseDamage + baseDamage * critMultiplier - defense;
+    const damage = (baseDamage *2) + baseDamage * critMultiplier - defense;
     return damage;
   };
 
@@ -148,6 +152,11 @@ export default function FightingArena() {
         const abilityResult = abilities.strike(attacker, defender);
         console.log(`${defender.name} hp is ${defender.hp}`)
         steps.push(abilityResult);
+        if (defender.extraHP && defender.extraHP > 0) {
+          defender.hp += defender.extraHP;
+          steps.push(`${defender.name} blocked ${defender.extraHP} damage with the Shield.`) // Reset the extraHP after it's consumed.
+          defender.extraHP = 0;
+        }
         console.log(steps);
         setPlayerChoice("");
         attacker = attacker === fighter1 ? fighter2 : fighter1;
@@ -170,6 +179,18 @@ export default function FightingArena() {
         battleStep(attacker, defender);
       } else if (playerChoice === "Heal") {
         const abilityResult = abilities.heal(attacker, defender);
+        console.log(`${defender.name} hp is ${defender.hp}`)
+        steps.push(abilityResult);
+        console.log(steps);
+        setPlayerChoice("");
+        attacker = attacker === fighter1 ? fighter2 : fighter1;
+        defender = attacker === fighter2 ? fighter1 : fighter2;
+        setAttacker(attacker);
+        setDefender(defender);
+        console.log(`now the attacker will be ${attacker.name}`);
+        battleStep(attacker, defender);
+      } else if (playerChoice === "Block") {
+        const abilityResult = abilities.block(attacker, defender);
         console.log(`${defender.name} hp is ${defender.hp}`)
         steps.push(abilityResult);
         console.log(steps);
