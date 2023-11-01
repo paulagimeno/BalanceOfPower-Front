@@ -46,6 +46,7 @@
   -o-border-image: linear-gradient(to right, rgb(255, 140, 0), rgb(255, 212, 85), rgb(255, 120, 2));
      border-image: linear-gradient(to right, rgb(255, 140, 0), rgb(255, 212, 85), rgb(255, 120, 2));
   border-image-slice: 1;
+  border-radius: 10px;
 }
 .character-container .character-item:hover {
   transform: scale(1.1);

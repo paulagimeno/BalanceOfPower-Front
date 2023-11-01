@@ -11,6 +11,7 @@ export default function FightingArena() {
   const [playerChoice, setPlayerChoice] = useState("");
   const [attacker, setAttacker] = useState();
   const [defender, setDefender] = useState();
+  
 
 
   const abilities = {
@@ -149,6 +150,7 @@ export default function FightingArena() {
 
   const executeAttack = (playerChoice, attacker, defender) => {
       if (playerChoice === "Strike") {
+        steps.pop()
         const abilityResult = abilities.strike(attacker, defender);
         console.log(`${defender.name} hp is ${defender.hp}`)
         steps.push(abilityResult);
@@ -166,6 +168,7 @@ export default function FightingArena() {
         console.log(`now the attacker will be ${attacker.name}`);
         battleStep(attacker, defender); 
       } else if (playerChoice === "Execute") {
+        steps.pop()
         const abilityResult = abilities.execute(attacker, defender);
         console.log(`${defender.name} hp is ${defender.hp}`)
         steps.push(abilityResult);
@@ -178,6 +181,7 @@ export default function FightingArena() {
         console.log(`now the attacker will be ${attacker.name}`);
         battleStep(attacker, defender);
       } else if (playerChoice === "Heal") {
+        steps.pop()
         const abilityResult = abilities.heal(attacker, defender);
         console.log(`${defender.name} hp is ${defender.hp}`)
         steps.push(abilityResult);
@@ -190,6 +194,7 @@ export default function FightingArena() {
         console.log(`now the attacker will be ${attacker.name}`);
         battleStep(attacker, defender);
       } else if (playerChoice === "Block") {
+        steps.pop()
         const abilityResult = abilities.block(attacker, defender);
         console.log(`${defender.name} hp is ${defender.hp}`)
         steps.push(abilityResult);
@@ -209,12 +214,13 @@ export default function FightingArena() {
 
   useEffect(() => {
     if (battle && currentStep < battleSteps.length - 1) {
-      const timer = setTimeout(() => {
+      const timer = setInterval(() => {
+        if (currentStep + 1 < battleSteps.length)
         setCurrentStep(currentStep + 1);
         console.log(currentStep)
-      }, 2000);
+      }, 1500);
 
-      return () => clearTimeout(timer);
+      return () => clearInterval(timer);
     }
   }, [battleSteps, currentStep, battle]);
 
@@ -233,7 +239,9 @@ export default function FightingArena() {
             FIGHT!
           </button>
         ) : (
-          <div>{battleSteps[currentStep]}</div>
+          <div>{battleSteps.slice(0, currentStep +1).map((step, index) => (
+            <div key={index}>{step}</div>
+          ))}</div>
         )}
       </div>
       <div className="arena_fighter2">
