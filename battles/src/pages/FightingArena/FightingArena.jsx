@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function FightingArena() {
@@ -77,7 +77,7 @@ export default function FightingArena() {
 
   
 
-  const battle = () => {
+    const battle = () => {
     const steps = [];
 
     setBattleStarted(true);
