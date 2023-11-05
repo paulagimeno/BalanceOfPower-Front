@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function FightingArena() {
+
   const location = useLocation();
   const { fighter1, fighter2 } = location.state;
   const [battleStarted, setBattleStarted] = useState(false);
@@ -12,7 +13,6 @@ export default function FightingArena() {
   const [attacker, setAttacker] = useState();
   const [defender, setDefender] = useState();
   
-
 
   const abilities = {
     strike: (attacker, defender) => {
@@ -78,7 +78,7 @@ export default function FightingArena() {
 
   
 
-  const battle = () => {
+    const battle = () => {
     const steps = [];
 
     setBattleStarted(true);
