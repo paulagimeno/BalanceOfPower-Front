@@ -1,0 +1,59 @@
+.home-container {
+    background-image: url('../../../../../AsstesBDO/BDO_Home_BG.jpeg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+
+}
+
+.home-container .home-content {
+    background-color: #ff9a1f1f;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 450px;
+    margin-left: 120px;
+    width: 20vw;
+    text-decoration: none;
+    font-size: 1vw;
+    font-weight: bold;
+    color: #ff8000;
+    text-decoration: none;
+    text-transform: uppercase;
+    
+    animation: none;
+    
+    
+}
+.home-content:hover {
+    animation: rotateBorder 1s linear infinite;
+    border: 1px solid #ff8000;
+    
+}
+
+@keyframes rotateBorder {
+    0% {
+        border-color: #ffffff;
+    }
+    25% {
+        border-color: #ffbc37; 
+    }
+    50% {
+        border-color: #ffa600; 
+    }
+    75% {
+        border-color: #FFA500; 
+    }
+    100% {
+        border-color: #fffffd; 
+    }
+}
+
+.no-decoration {
+    text-decoration: none;
+}
