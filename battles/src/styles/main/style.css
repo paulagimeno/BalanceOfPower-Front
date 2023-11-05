@@ -67,6 +67,7 @@ body {
   transform: scale(1.1);
   border-radius: 10px !important;
   border-image-slice: 1;
+  border-radius: 10px;
 }
 .character-container .character-item:hover {
   transform: scale(1.1);
