@@ -8,22 +8,22 @@ body {
 }
 
 .gallery {
-    background: transparent; /* Elimina la imagen de fondo actual */
+    background: transparent; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
-    overflow: hidden; /* Esto asegura que el video se ajuste correctamente */
+    overflow: hidden; 
 }
 
-/* Agrega un contenedor adicional para el video */
+
 .video-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Coloca el video detrás de otros elementos */
+    z-index: -1; 
 }
 
 #video-background {

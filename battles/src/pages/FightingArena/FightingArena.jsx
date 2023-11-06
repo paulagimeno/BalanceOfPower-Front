@@ -13,6 +13,8 @@ export default function FightingArena() {
   const [defender, setDefender] = useState();
   const [fighter1maxHp, setFighter1maxHp] = useState(fighter1.hp);
   const [fighter2maxHp, setFighter2maxHp] = useState(fighter2.hp);
+  const [winner, setWinner] = useState();
+  const [loser, setLoser] = useState();
   const chatContainerRef = useRef();
 
   const abilities = {
@@ -158,8 +160,11 @@ export default function FightingArena() {
           );
         }
       } else if (fighter1.hp <= 0 || fighter2.hp <= 0) {
-        const winner = fighter1.hp > 0 ? fighter1 : fighter2;
-        steps.push(`${winner.name} won the battle!`);
+        const won = fighter1.hp > 0 ? fighter1 : fighter2;
+        const lost = won === fighter1 ? fighter2 : fighter1;
+        setWinner(won);
+        setLoser(lost);
+        steps.push(`${won.name} won the battle!`);
       }
     };
 
@@ -296,6 +301,22 @@ export default function FightingArena() {
     }
   }
 
+  useEffect(()=>{
+    const fighter1Percentage = (Math.max(fighter1.hp, 0) / fighter1maxHp) * 100;
+    const fighter2Percentage = (Math.max(fighter2.hp, 0) / fighter2maxHp) * 100;
+
+    const fighter1HealthBar = document.getElementById("fighter1HealthBar");
+    if (fighter1HealthBar) {
+      fighter1HealthBar.style.width = `${fighter1Percentage}%`;
+    }
+
+    const fighter2HealthBar = document.getElementById("fighter2HealthBar");
+    if (fighter2HealthBar) {
+      fighter2HealthBar.style.width = `${fighter2Percentage}%`;
+    }
+
+  }, [fighter1.hp, fighter2.hp, fighter1maxHp, fighter2maxHp])
+
   return (
     <div className="arena_body">
       <div className="arena_fighter1">
@@ -305,22 +326,24 @@ export default function FightingArena() {
           </p>
         </div>
         <div className="arena_fighters">
-          <img className="fighters" src={fighter1.fullBodyImage} alt="" />
+          <img className={`fighters ${fighter1 === winner ? 'winningFighter' : fighter1 === loser ? 'losingFighter' : '' }`} src={fighter1.fullBodyImage} alt="" />
         </div>
         <div className="arena_hps">
+        <p className="hpText">HP: {Math.max(fighter1.hp, 0).toFixed(0)}</p>
           <div className="health-bar">
             <div
+              id="fighter1HealthBar"
               className={getColorOne()}
               style={{ width: `${(fighter1.hp / fighter1maxHp) * 100}%` }}
-            ></div>
+            >
+            </div>
           </div>
-          <p>HP: {fighter1.hp.toFixed(0)}</p>
         </div>
       </div>
       <div className="arena_battle">
         {!battleStarted ? (
           <button className="startFight" onClick={battle}>
-            FIGHT!
+            START THE FIGHT !
           </button>
         ) : (
           <div className="battle">
@@ -342,18 +365,18 @@ export default function FightingArena() {
           </p>
         </div>
         <div className="arena_fighters">
-          <img className="fighters" src={fighter2.fullBodyImage} alt="" />
+          <img className={`fighters ${fighter2 === winner ? 'winningFighter' : fighter2 === loser ? 'losingFighter' : '' }`} src={fighter2.fullBodyImage} alt="" />
         </div>
         <div className="arena_hps">
+          <p className="hpText">HP: {Math.max(fighter2.hp, 0).toFixed(0)}</p>
           <div className="health-bar">
-            <div
+            <div 
+              id="fighter2HealthBar"
               className={getColorTwo()}
               style={{ width: `${(fighter2.hp / fighter2maxHp) * 100}%` }}
             >
-              
             </div>
           </div>
-          <p>HP: {fighter2.hp.toFixed(0)}</p>
         </div>
       </div>
     </div>
