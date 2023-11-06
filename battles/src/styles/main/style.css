@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap");
 body {
@@ -10,12 +11,28 @@ body {
 }
 
 .gallery {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  background: transparent; 
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  overflow: hidden; 
+}
+
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Coloca el video detrás de otros elementos */
+}
+
+#video-background {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .character-container {
@@ -28,28 +45,39 @@ body {
   z-index: 1;
 }
 
-.box_characters-selected1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 10vw;
-  z-index: 0;
-}
-.box_characters-selected1 .p-name {
-  font-size: 3rem;
+.character-selected1 {
+  position: absolute;
+  z-index: 1;
 }
 
-.box_characters-selected2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 10vw;
-  z-index: -1;
+.character-selected2 {
+  position: absolute;
+  z-index: 1;
 }
-.box_characters-selected2 .p-name {
-  font-size: 3rem;
+
+.character-selected1 .img-character1,
+.character-selected2 .img-character2 {
+  width: 600px;
+  height: 700px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.character-selected1 .p-name,
+.character-selected2 .p-name {
+  font-size: 4rem;
+  position: absolute;
+  color: #fff;
+  padding: 5px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  background-image: url("https://res.cloudinary.com/dvmkyxyc0/image/upload/v1699308099/brush-stroke-png-47332_c9pwzb.png ");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .charcters-selection {
@@ -67,18 +95,12 @@ body {
   text-align: center;
 }
 
-img {
-  width: 600px;
-  height: 700px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
 .box-gallery {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 60vw;
+  z-index: 2;
 }
 
 h1 {
@@ -137,6 +159,7 @@ button:active {
   cursor: pointer;
   text-align: center;
   transition: transform 0.3s;
+  z-index: 1;
 }
 
 .character-img {
@@ -161,7 +184,7 @@ button:active {
 }
 
 .character-name {
-  font-size: 1.1vw;
+  font-size: 0.9vw;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -172,7 +195,6 @@ button:active {
 
 .fighter1,
 .fighter2 {
-  position: relative;
   border: 5px solid transparent;
   transform: scale(1.1);
   border-radius: 10px;
@@ -197,14 +219,14 @@ button:active {
   border-bottom: 2px solid rgba(255, 183, 106, 0.822);
 }
 
-@keyframes appear {
+@keyframes slideIn {
   0% {
+    transform: translateX(-100%);
     opacity: 0;
-    transform: translateY(20px) rotate(0deg);
   }
   100% {
+    transform: translateX(0);
     opacity: 1;
-    transform: translateY(0) rotate(-5deg);
   }
 }
 .characters-button {
@@ -215,6 +237,10 @@ button:active {
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
+}
+
+.slide-in {
+  animation: slideIn 1s forwards;
 }
 
 .button-ready {
@@ -247,7 +273,7 @@ button:active {
 .button-arena {
   font-family: "Trade Winds", serif;
   font-size: 5.5rem;
-  width: 100vw;
+  width: 110vw;
   height: 200px;
   color: #fff;
   padding: 5px 10px;
@@ -259,12 +285,15 @@ button:active {
   background-size: 120% auto;
   background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
   opacity: 0;
-  animation: appear 0.5s ease 0.5s both;
   border: 2px solid transparent;
+  animation: slideIn 1s forwards;
+}
+
+.rotate-button {
+  transform: rotate(-5deg);
 }
 
 .button-arena:hover {
-  border-color: #FEA1A1;
   background-position: right center;
 }
 
@@ -551,68 +580,43 @@ button.abilityButton:hover {
 }
 
 .home-container {
-  background-repeat: no-repeat;
-  background-position: center center;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  width: 100vw;
   height: 100vh;
+  background-color: #000;
 }
 
-.home-container .home-content {
-  position: relative;
-  background-color: rgba(255, 154, 31, 0.1215686275);
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 450px;
-  margin-left: 120px;
-  width: 20vw;
-  text-decoration: none;
-  font-size: 1vw;
-  font-weight: bold;
-  color: #ff8000;
-  text-decoration: none;
-  text-transform: uppercase;
-  overflow: hidden;
+#video-background {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
-.home-content::before {
-  content: "";
+.home-content {
+  font-family: "Trade Winds", serif;
+  font-size: 1.5rem;
+  color: #ECCDB4;
+  cursor: pointer;
+  transition: all 0.3s ease;
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border: 3px solid transparent;
-  border-image-slice: 1;
-  -webkit-clip-path: inset(0px round 10px);
-          clip-path: inset(0px round 10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border-radius: 15px;
+  border: none;
+  background-size: 120% auto;
+  background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
+  width: 50vh;
+  height: 6vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-@keyframes colorBorder {
-  0% {
-    border-image-source: linear-gradient(to bottom, #8B4513, #D2B48C);
-  }
-  25% {
-    border-image-source: linear-gradient(to bottom, #D2B48C, #8B4513);
-  }
-  50% {
-    border-image-source: linear-gradient(to bottom, #8B4513, #D2B48C);
-  }
-  75% {
-    border-image-source: linear-gradient(to bottom, #D2B48C, #8B4513);
-  }
-  100% {
-    border-image-source: linear-gradient(to bottom, #8B4513, #D2B48C);
-  }
-}
-.home-content:hover::before {
-  animation: colorBorder 3s infinite linear;
-}
-
-.no-decoration {
-  text-decoration: none;
+.home-content:hover {
+  background-position: right center;
 }/*# sourceMappingURL=style.css.map */

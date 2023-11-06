@@ -26,11 +26,15 @@ const CharactersGallery = ({ data }) => {
         if (fighter1 === character) {
             setFighter1(null);
         } else if (fighter2 === character) {
-            setFighter2(null);
+            setFighter2(null); 
         } else if (fighter1 === null) {
-            setFighter1(character);
+            setFighter1(character); 
         } else if (fighter2 === null) {
-            setFighter2(character);
+            setFighter2(character); 
+        } else {
+            
+            setFighter1(null);
+            setFighter2(null);
         }
     }
 
@@ -57,13 +61,18 @@ const CharactersGallery = ({ data }) => {
 
     return (
         <div className='gallery'>
+            <div className='video-container'>
+                <video id='video-background' autoPlay muted loop>
+                    <source src="https://res.cloudinary.com/dvmkyxyc0/video/upload/v1699307885/FondoLoopCS_vu8sgm.mp4" type='video/mp4' />
+                </video>
+            </div>
             <div className={`gallery ${isGrayscale ? 'grayscale' : ''}`}>
                 <div className="character-container">
                     <div className="box_characters-selected1">
                         <div className='charcters-selection'>
                             {fighter1 && (
                                 <div className="character-selected1">
-                                    <img src={fighter1.fullBodyImage} alt={fighter1.name} />
+                                    <img className='img-character1' src={fighter1.fullBodyImage} alt={fighter1.name} />
                                     <p className='p-name'>{fighter1.name}</p>
                                 </div>
                             )}
@@ -71,7 +80,7 @@ const CharactersGallery = ({ data }) => {
                     </div>
 
                     <div className='box-gallery'>
-                        <h1>Character Select</h1>
+                        {/* <h1>Character Select</h1> */}
                         <div className="character-filter">
                             <button className='button-filter' onClick={() => filterCharacters("All")}>All</button>
                             <button className='button-filter' onClick={() => filterCharacters("DPS")}>DPS</button>
@@ -102,7 +111,7 @@ const CharactersGallery = ({ data }) => {
                         <div className='charcters-selection'>
                             {fighter2 && (
                                 <div className="character-selected2">
-                                    <img src={fighter2.fullBodyImage} alt={fighter2.name} />
+                                    <img className='img-character2' src={fighter2.fullBodyImage} alt={fighter2.name} />
                                     <p className='p-name'>{fighter2.name}</p>
                                 </div>
                             )}
@@ -117,12 +126,12 @@ const CharactersGallery = ({ data }) => {
                             <button className="button-arena">Move to the fighting arena</button>
                         </Link>
                     ) : (
-                        <button className="button-ready" onClick={handleReady}>Ready!</button>
+                        <button className="button-ready rotate-button" onClick={handleReady}>Ready!</button>
                     )
                 ) : (
                     fighter1 && fighter2 && (
                         <div className='button-ready'>
-                            <button className='ready'onClick={handleReady}>Ready!</button>
+                            <button className='ready' onClick={handleReady}>Ready!</button>
                         </div>
                     )
                 )}
