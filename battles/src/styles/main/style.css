@@ -273,11 +273,6 @@ button:active {
   top: 2px;
 }
 
-p {
-  font-size: 2vw;
-  margin-right: 100px;
-}
-
 .grayscale {
   filter: saturate(30%);
   transition: filter 0.5s;
@@ -297,6 +292,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #39B5E0;
 }
 
 .arena_fighter2 {
@@ -306,6 +302,7 @@ p {
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  color: #EA047E;
 }
 
 .arena_fighters {
@@ -314,6 +311,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .arena_fighters img {
   -o-object-fit: cover;
@@ -328,6 +326,7 @@ p {
 .arena_hps {
   height: 15vh;
   width: 50%;
+  font-size: 0.5vw;
 }
 
 .arena_battle {
@@ -402,7 +401,7 @@ p {
   border-top-style: double;
   border-left-style: double;
   font-size: 1.5vw;
-  background-color: rgb(0, 0, 0);
+  background-color: rgba(234, 4, 127, 0.5607843137);
   margin-top: 0.6vw;
   margin-left: auto;
   padding-right: 2vw;
@@ -415,7 +414,7 @@ p {
   border-top-style: double;
   border-right-style: double;
   font-size: 1.5vw;
-  background-color: rgb(0, 0, 0);
+  background-color: rgba(57, 182, 224, 0.5960784314);
   margin-top: 0.6vw;
   margin-right: auto;
   padding-left: 2vw;
@@ -427,11 +426,25 @@ p {
   padding-top: 0.5vw;
   padding-bottom: 0.5vw;
   font-size: 1.5vw;
+  background-color: rgba(0, 0, 0, 0.644);
+  padding-left: 1vw;
+  padding-right: 1vw;
+  padding-top: 0.3vw;
+  padding-bottom: 0.3vw;
+  margin-top: 0.6vw;
+  border-style: double;
 }
 .chat .bothFighters {
   padding-top: 0.5vw;
   padding-bottom: 0.5vw;
   font-size: 1.5vw;
+  background-color: rgba(0, 0, 0, 0.644);
+  padding-left: 1vw;
+  padding-right: 1vw;
+  padding-top: 0.3vw;
+  padding-bottom: 0.3vw;
+  margin-top: 0.6vw;
+  border-style: double;
 }
 
 .health-bar {
@@ -440,6 +453,7 @@ p {
   background-color: rgba(5, 0, 0, 0.733); /* Initial health bar color */
   border: 2px solid #fffdfd;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .health-bar-inner-full {
@@ -489,12 +503,11 @@ button.abilityButton {
   border-width: 2px;
 }
 button.abilityButton:hover {
-  border-color: rgb(14, 248, 170);
+  border-color: #FEA1A1;
   border-width: 5px;
   border-style: solid;
   width: 75px;
   height: 35px;
-  color: rgb(14, 248, 170);
 }
 
 .home-container {

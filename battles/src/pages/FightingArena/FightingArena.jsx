@@ -349,7 +349,9 @@ export default function FightingArena() {
             <div
               className={getColorTwo()}
               style={{ width: `${(fighter2.hp / fighter2maxHp) * 100}%` }}
-            ></div>
+            >
+              
+            </div>
           </div>
           <p>HP: {fighter2.hp.toFixed(0)}</p>
         </div>
