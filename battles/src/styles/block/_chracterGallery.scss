@@ -1,12 +1,16 @@
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #8B4513, #D2B48C);
-    color: aliceblue;
+    background: linear-gradient(to bottom, #ECCDB4, #FEA1A1);
+    color: rgb(255, 255, 255);
     // overflow: hidden;
 }
 
 .gallery {
+    // background-image: url("../../../../../bg3_ai.png");
+    // background-size: cover;
+    // background-repeat: no-repeat; 
+    // background-position: center; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -105,7 +109,7 @@ button {
     border-radius: 5px;
     border: none;
     background-size: 120% auto;
-    background-image: linear-gradient(315deg, #c02425 0%, #f0cb35 75%);
+    background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
 }
 
 button:hover {
@@ -209,16 +213,31 @@ button:active {
 }
 
 .characters-button {
+    display: flex;
+    flex-direction: column; /* Cambiamos la dirección del contenido a una columna */
+    align-items: center; /* Centramos los elementos horizontalmente */
     position: fixed;
-    bottom: 250px;
+    bottom: 200px; /* Ajusta la posición a tu preferencia */
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
 }
 
+.button-ready {
+    display: flex;
+    flex-direction: column; /* Cambiamos la dirección del contenido a una columna */
+    align-items: center; /* Centramos los elementos horizontalmente */
+    position: fixed;
+    top: 150px; /* Ajusta la posición a tu preferencia */
+    left: 50%;
+    transform: translateX(-50%);
+
+
+}
+
 .button-arena {
     width: 100vw;
-    height: 250px;
+    height: 200px;
     color: #fff;
     padding: 5px 10px;
     font-size: 4rem;
@@ -229,14 +248,14 @@ button:active {
     outline: none;
     border: none;
     background-size: 120% auto;
-    background-image: linear-gradient(315deg, #c02425 0%, #f0cb35 75%);
+    background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
     opacity: 0;
     animation: appear 0.5s ease 0.5s both;
-    border: 2px solid transparent; /* Borde transparente por defecto */
+    border: 2px solid transparent; 
 }
 
 .button-arena:hover {
-    border-color: #ff7b00; /* Cambiar el color del borde en el hover */
+    border-color: #FEA1A1;
     background-position: right center;
 }
 
