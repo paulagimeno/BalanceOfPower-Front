@@ -12,10 +12,12 @@
 
 }
 
+
 .home-container .home-content {
+    position: relative;
     background-color: #ff9a1f1f;
     padding: 20px;
-    border-radius: 15px;
+    border-radius: 10px;
     margin-top: 450px;
     margin-left: 120px;
     width: 20vw;
@@ -25,35 +27,46 @@
     color: #ff8000;
     text-decoration: none;
     text-transform: uppercase;
-    
-    animation: none;
-    
-    
-}
-.home-content:hover {
-    animation: rotateBorder 1s linear infinite;
-    border: 1px solid #ff8000;
-    
+    overflow: hidden; 
 }
 
-@keyframes rotateBorder {
+.home-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px solid transparent;
+    border-image-slice: 1;
+    // border-radius: 3px;
+    clip-path: inset(0px round 10px);
+
+}
+
+@keyframes colorBorder {
     0% {
-        border-color: #ffffff;
+        border-image-source: linear-gradient(to bottom, #8B4513, #D2B48C);
     }
     25% {
-        border-color: #ffbc37; 
+        border-image-source: linear-gradient(to bottom, #D2B48C, #8B4513);
     }
     50% {
-        border-color: #ffa600; 
+        border-image-source: linear-gradient(to bottom, #8B4513, #D2B48C);
     }
     75% {
-        border-color: #FFA500; 
+        border-image-source: linear-gradient(to bottom, #D2B48C, #8B4513);
     }
     100% {
-        border-color: #fffffd; 
+        border-image-source: linear-gradient(to bottom, #8B4513, #D2B48C);
     }
 }
 
+.home-content:hover::before {
+    animation: colorBorder 3s infinite linear;
+
+
+}
 .no-decoration {
     text-decoration: none;
 }
