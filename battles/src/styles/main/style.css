@@ -10,7 +10,6 @@ body {
 }
 
 .gallery {
-  background-image: url("../../../../../bg3_ai.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -326,7 +325,12 @@ button:active {
 .arena_hps {
   height: 15vh;
   width: 50%;
-  font-size: 0.5vw;
+  font-size: 1.2vw;
+  padding-top: 1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Trade Winds", serif;
 }
 
 .arena_battle {
@@ -338,8 +342,20 @@ button:active {
 
 .startFight {
   height: 50px;
-  width: 100px;
+  width: 300px;
   border-radius: 30px;
+  background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
+  color: white;
+  font-family: "Trade Winds", serif;
+  border-color: white;
+  cursor: pointer;
+  font-size: 1vw;
+}
+.startFight:hover {
+  height: 55px;
+  width: 305px;
+  cursor: pointer;
+  font-size: 1.1vw;
 }
 
 .battle {
@@ -449,21 +465,25 @@ button:active {
 
 .health-bar {
   width: 100%;
-  height: 2vh;
+  height: 3vh;
   background-color: rgba(5, 0, 0, 0.733); /* Initial health bar color */
   border: 2px solid #fffdfd;
-  border-radius: 10px;
+  border-radius: 20px;
   overflow: hidden;
+  display: flex;
 }
 
 .health-bar-inner-full {
   height: 100%;
   background-color: rgb(0, 255, 21); /* Health level color */
   transition: width 0.3s ease-out; /* Add a smooth transition for the width change */
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .health-bar-inner3 {
@@ -472,6 +492,9 @@ button:active {
   transition: width 0.3s ease-out; /* Add a smooth transition for the width change */
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .health-bar-inner2 {
@@ -480,6 +503,9 @@ button:active {
   transition: width 0.3s ease-out; /* Add a smooth transition for the width change */
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .health-bar-inner1 {
@@ -488,6 +514,9 @@ button:active {
   transition: width 0.3s ease-out; /* Add a smooth transition for the width change */
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button.abilityButton {
@@ -501,13 +530,24 @@ button.abilityButton {
   text-align: center;
   color: white;
   border-width: 2px;
+  font-family: "Trade Winds", serif;
 }
 button.abilityButton:hover {
-  border-color: #FEA1A1;
-  border-width: 5px;
-  border-style: solid;
-  width: 75px;
-  height: 35px;
+  background-image: linear-gradient(315deg, #ECCDB4 0%, #FEA1A1 75%);
+  cursor: pointer;
+}
+
+.hpText {
+  margin: 0%;
+}
+
+.losingFighter {
+  filter: saturate(10%);
+  transition: filter 0.5s;
+}
+
+.winningFighter {
+  filter: drop-shadow(12px 8px 4px #fffb0f);
 }
 
 .home-container {
