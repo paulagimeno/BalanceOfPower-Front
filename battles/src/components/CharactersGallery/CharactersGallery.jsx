@@ -38,6 +38,7 @@ const CharactersGallery = ({ data }) => {
 
     const filteredCharacters = filter === "All" ? characters : characters.filter((character) => character.category === filter);
 
+
     useEffect(() => {
         // Verificar si ambos luchadores están seleccionados y aplicar el efecto de escala de grises en consecuencia
         if (fighter1 && fighter2) {
@@ -48,7 +49,6 @@ const CharactersGallery = ({ data }) => {
     }, [fighter1, fighter2]);
 
     return (
-        
         <div className='gallery'>
         <div className={`gallery ${isGrayscale ? 'grayscale' : ''}`}>
             <div className="character-container">
