@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap");
 body {
@@ -6,9 +5,15 @@ body {
   padding: 0;
   background: linear-gradient(to bottom, #ECCDB4, #FEA1A1);
   color: rgb(255, 255, 255);
+  overflow: hidden;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 .gallery {
+  background-image: url("../../../../../bg3_ai.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,6 +37,9 @@ body {
   width: 10vw;
   z-index: 0;
 }
+.box_characters-selected1 .p-name {
+  font-size: 3rem;
+}
 
 .box_characters-selected2 {
   display: flex;
@@ -41,11 +49,15 @@ body {
   width: 10vw;
   z-index: -1;
 }
+.box_characters-selected2 .p-name {
+  font-size: 3rem;
+}
 
 .charcters-selection {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "Trade Winds", serif;
   gap: 10px;
 }
 
@@ -63,10 +75,6 @@ img {
      object-fit: cover;
 }
 
-.character-selected p {
-  margin: 5px;
-}
-
 .box-gallery {
   display: flex;
   flex-direction: column;
@@ -78,19 +86,21 @@ h1 {
   text-align: center;
 }
 
-.filter-buttons {
+.character-filter {
   display: flex;
   justify-content: center;
   gap: 20px;
   margin-bottom: 20px;
 }
 
-button {
+.button-filter {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: bold;
+  font-size: 0.8rem;
   min-width: 100px;
   height: 30px;
   color: #fff;
   padding: 5px 10px;
-  font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
@@ -158,6 +168,7 @@ button:active {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  font-family: "Trade Winds", serif;
 }
 
 .fighter1,
@@ -191,20 +202,17 @@ button:active {
   0% {
     opacity: 0;
     transform: translateY(20px) rotate(0deg);
-    /* Aplicamos la rotación aquí */
   }
   100% {
     opacity: 1;
     transform: translateY(0) rotate(-5deg);
-    /* Retornamos a la rotación original */
   }
 }
 .characters-button {
   display: flex;
-  flex-direction: column; /* Cambiamos la dirección del contenido a una columna */
-  align-items: center; /* Centramos los elementos horizontalmente */
+  flex-direction: column;
   position: fixed;
-  bottom: 200px; /* Ajusta la posición a tu preferencia */
+  bottom: 200px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -212,21 +220,38 @@ button:active {
 
 .button-ready {
   display: flex;
-  flex-direction: column; /* Cambiamos la dirección del contenido a una columna */
-  align-items: center; /* Centramos los elementos horizontalmente */
-  position: fixed;
-  top: 150px; /* Ajusta la posición a tu preferencia */
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  text-align: center;
+  top: 150px;
   left: 50%;
   transform: translateX(-50%);
 }
+.button-ready .ready {
+  font-family: "Trade Winds", serif;
+  font-size: 1.2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  background-size: 120% auto;
+  background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
+  width: 40vh;
+  height: 4vh;
+}
 
 .button-arena {
+  font-family: "Trade Winds", serif;
+  font-size: 5.5rem;
   width: 100vw;
   height: 200px;
   color: #fff;
   padding: 5px 10px;
-  font-size: 4rem;
-  font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-block;
@@ -485,9 +510,10 @@ button.abilityButton:hover {
 }
 
 .home-container .home-content {
+  position: relative;
   background-color: rgba(255, 154, 31, 0.1215686275);
   padding: 20px;
-  border-radius: 15px;
+  border-radius: 10px;
   margin-top: 450px;
   margin-left: 120px;
   width: 20vw;
@@ -497,31 +523,43 @@ button.abilityButton:hover {
   color: #ff8000;
   text-decoration: none;
   text-transform: uppercase;
-  animation: none;
+  overflow: hidden;
 }
 
-.home-content:hover {
-  animation: rotateBorder 1s linear infinite;
-  border: 1px solid #ff8000;
+.home-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid transparent;
+  border-image-slice: 1;
+  -webkit-clip-path: inset(0px round 10px);
+          clip-path: inset(0px round 10px);
 }
 
-@keyframes rotateBorder {
+@keyframes colorBorder {
   0% {
-    border-color: #ffffff;
+    border-image-source: linear-gradient(to bottom, #8B4513, #D2B48C);
   }
   25% {
-    border-color: #ffbc37;
+    border-image-source: linear-gradient(to bottom, #D2B48C, #8B4513);
   }
   50% {
-    border-color: #ffa600;
+    border-image-source: linear-gradient(to bottom, #8B4513, #D2B48C);
   }
   75% {
-    border-color: #FFA500;
+    border-image-source: linear-gradient(to bottom, #D2B48C, #8B4513);
   }
   100% {
-    border-color: #fffffd;
+    border-image-source: linear-gradient(to bottom, #8B4513, #D2B48C);
   }
 }
+.home-content:hover::before {
+  animation: colorBorder 3s infinite linear;
+}
+
 .no-decoration {
   text-decoration: none;
 }/*# sourceMappingURL=style.css.map */
