@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function FightingArena() {
@@ -12,6 +12,9 @@ export default function FightingArena() {
   const [playerChoice, setPlayerChoice] = useState("");
   const [attacker, setAttacker] = useState();
   const [defender, setDefender] = useState();
+  const chatContainerRef = useRef();
+
+  
   
 
   const abilities = {
@@ -57,8 +60,8 @@ export default function FightingArena() {
       critMultiplier = 0;
     }
 
-    const damage = (baseDamage *2) + baseDamage * critMultiplier - defense;
-    return damage;
+    const damage = ((baseDamage *2) + baseDamage * critMultiplier - defense).toFixed(2);
+    return parseFloat(damage);
   };
 
   const calculateRecover = (strength, crit) => {
@@ -72,8 +75,8 @@ export default function FightingArena() {
       critMultiplier = 0;
     }
 
-    const recover = baseRecover + baseRecover * critMultiplier;
-    return recover;
+    const recover = ((baseRecover *2) + baseRecover * critMultiplier).toFixed(2);
+    return parseFloat(recover);
   };
 
   
@@ -212,26 +215,55 @@ export default function FightingArena() {
     battleStep(attacker, defender);
   };
 
+  const scrollChatToBottom = () => {
+    chatContainerRef.current?.scrollIntoView({ behavior: "smooth" })
+  };
+
   useEffect(() => {
+    scrollChatToBottom();
     if (battle && currentStep < battleSteps.length - 1) {
       const timer = setInterval(() => {
         if (currentStep + 1 < battleSteps.length)
         setCurrentStep(currentStep + 1);
         console.log(currentStep)
-      }, 1500);
+      }, 1000);
 
       return () => clearInterval(timer);
     }
   }, [battleSteps, currentStep, battle]);
-
   
+  const getStepText = (step) => {
+    if (typeof step === 'string') {
+      return step;
+    }
+    return step.props.children;
+  };
+
+  const getStepClass = (step) => {
+    const stepText = getStepText(step);
+
+    if (stepText.includes(fighter1.name) && stepText.includes(fighter2.name)) {
+      return 'bothFighters';
+    } else if (stepText.includes(fighter1.name)) {
+      return 'fighterOne';
+    } else if (stepText.includes(fighter2.name)) {
+      return 'fighterTwo';
+    }
+    return 'noFighter';
+  };
 
   return (
     <div className="arena_body">
       <div className="arena_fighter1">
-        <p>{fighter1 ? fighter1.name : "Not selected"}</p>
+      <div className="arena_names">
+        <p className="fighterName">{fighter1 ? fighter1.name.toUpperCase() : "Not selected"}</p>
+        </div>
+        <div className="arena_fighters">
         <img className="fighters" src={fighter1.fullBodyImage} alt="" />
+        </div>
+        <div className="arena_hps">
         <p>HP: {fighter1.hp}</p>
+        </div>
       </div>
       <div className="arena_battle">
         {!battleStarted ? (
@@ -239,15 +271,30 @@ export default function FightingArena() {
             FIGHT!
           </button>
         ) : (
-          <div>{battleSteps.slice(0, currentStep +1).map((step, index) => (
-            <div key={index}>{step}</div>
-          ))}</div>
+          <div className="battle">
+          <span className="top"></span>
+          <span className="right"></span>
+          <span className="bottom"></span>
+          <span className="left"></span>
+          <div className="chat">
+          {battleSteps.slice(0, currentStep +1).map((step, index) => (
+            <div className={getStepClass(step)} key={index}>{step}</div>
+          ))}
+          <div ref={chatContainerRef}/>
+          </div>
+          </div>
         )}
       </div>
       <div className="arena_fighter2">
-        <p>{fighter2 ? fighter2.name : "Not selected"}</p>
+      <div className="arena_names">
+        <p className="fighterName">{fighter2 ? fighter2.name.toUpperCase() : "Not selected"}</p>
+        </div>
+        <div className="arena_fighters">
         <img className="fighters" src={fighter2.fullBodyImage} alt="" />
+        </div>
+        <div className="arena_hps">
         <p>HP: {fighter2.hp}</p>
+        </div>
       </div>
     </div>
   );

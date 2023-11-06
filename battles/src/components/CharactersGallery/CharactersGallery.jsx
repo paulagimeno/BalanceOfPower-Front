@@ -48,7 +48,7 @@ const CharactersGallery = ({ data }) => {
             </div>
             <div className="character-content">
 
-                <SimpleBar style={{ maxHeight: 600, width: "70%" }}>
+                <SimpleBar style={{ maxHeight: "85vh", width: "70%" }}>
                     <div className="character-gallery">
                         {filteredCharacters.map((item, i) => (
                             <div

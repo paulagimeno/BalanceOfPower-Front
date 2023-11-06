@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap");
 body {
   margin: 0;
   padding: 0;
@@ -13,14 +15,19 @@ body {
   height: 100vh;
 }
 .character-container h1 {
+  width: 100vw;
+  height: 10vh;
   text-align: center;
-  margin-top: 20px;
+  padding-top: 20px;
+  margin-top: 0vw;
+  margin-bottom: 0vw;
 }
 .character-container .character-content {
   display: flex;
-  width: 100%;
+  width: 100vw;
   justify-content: space-between;
   align-items: flex-start;
+  height: 85vh;
 }
 .character-container .character-gallery {
   display: flex;
@@ -67,7 +74,6 @@ body {
   transform: scale(1.1);
   border-radius: 10px !important;
   border-image-slice: 1;
-  border-radius: 10px;
 }
 .character-container .character-item:hover {
   transform: scale(1.1);
@@ -87,9 +93,10 @@ body {
 }
 .character-container .filter-buttons {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  margin-right: 920px;
+  width: 100vw;
+  height: 5vh;
+  flex-direction: row;
+  padding-left: 5vw;
 }
 .character-container .filter-buttons button {
   min-width: 100px;
@@ -106,6 +113,7 @@ body {
   border: none;
   background-size: 120% auto;
   background-image: linear-gradient(315deg, #c02425 0%, #f0cb35 75%);
+  margin-right: 3vw;
 }
 .character-container .filter-buttons button:hover {
   background-position: right center;
@@ -199,31 +207,152 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .arena_fighter1 {
-  width: 20vw;
+  height: 100vh;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .arena_fighter2 {
-  width: 20vw;
-}
-
-.arena_battle {
-  width: 60vw;
+  height: 100vh;
+  width: 30vw;
   display: flex;
-  justify-content: center;
-  align-content: center;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
 }
 
-.fighters {
+.arena_fighters {
+  height: 70vh;
+  width: 30vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.arena_fighters img {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
 }
 
+.arena_names {
+  height: 15vh;
+}
+
+.arena_hps {
+  height: 15vh;
+}
+
+.arena_battle {
+  width: 40vw;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.startFight {
+  height: 50px;
+  width: 100px;
+  border-radius: 30px;
+}
+
+.battle {
+  --border-size: 3px;
+  --border-angle: 0turn;
+  width: 40vw;
+  height: 80vh;
+  background-image: url("https://res.cloudinary.com/dvmkyxyc0/image/upload/v1699208277/fondochat_jb8t6k.png"), conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+  background-size: calc(100% - var(--border-size) * 2) calc(100% - var(--border-size) * 2), cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  animation: bg-spin 3s linear infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+.fighterName {
+  font-family: "Trade Winds", serif;
+  font-size: 2vw;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  width: 99%;
+  height: 100%;
+  overflow: scroll;
+  align-items: center;
+  font-family: "Josefin Sans", sans-serif;
+  margin-top: 5%;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+.chat::-webkit-scrollbar {
+  width: 0; /* Hide scrollbar width for Chrome */
+}
+.chat::-webkit-scrollbar-thumb {
+  background: transparent; /* Hide thumb for Chrome */
+}
+.chat::-webkit-scrollbar-track {
+  background: transparent; /* Hide track for Chrome */
+}
+.chat {
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+.chat .fighterTwo {
+  border-bottom-style: double;
+  border-top-style: double;
+  border-left-style: double;
+  font-size: 1.5vw;
+  background-color: rgb(0, 0, 0);
+  margin-top: 0.6vw;
+  margin-left: auto;
+  padding-right: 2vw;
+  padding-left: 2vw;
+  padding-top: 0.3vw;
+  padding-bottom: 0.3vw;
+}
+.chat .fighterOne {
+  border-bottom-style: double;
+  border-top-style: double;
+  border-right-style: double;
+  font-size: 1.5vw;
+  background-color: rgb(0, 0, 0);
+  margin-top: 0.6vw;
+  margin-right: auto;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-top: 0.3vw;
+  padding-bottom: 0.3vw;
+}
+.chat .noFighter {
+  padding-top: 0.5vw;
+  padding-bottom: 0.5vw;
+  font-size: 1.5vw;
+}
+.chat .bothFighters {
+  padding-top: 0.5vw;
+  padding-bottom: 0.5vw;
+  font-size: 1.5vw;
+}
+
 .home-container {
-  background-image: url("../../../../../AsstesBDO/BDO_Home_BG.jpeg");
   background-repeat: no-repeat;
   background-position: center center;
   display: flex;
@@ -231,7 +360,7 @@ body {
   align-items: center;
   font-family: Arial, sans-serif;
   text-align: center;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
 }
 
