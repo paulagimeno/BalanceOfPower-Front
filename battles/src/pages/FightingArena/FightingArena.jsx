@@ -278,11 +278,11 @@ export default function FightingArena() {
   };
 
   const getColorOne = () => {
-    if ((fighter1.hp / fighter1maxHp) * 100 < 35){
+    if ((fighter1.hp / fighter1maxHp) * 100 < 35) {
       return "health-bar-inner1"
-    } else if ((fighter1.hp / fighter1maxHp) * 100 < 65){
+    } else if ((fighter1.hp / fighter1maxHp) * 100 < 65) {
       return "health-bar-inner2"
-    } else if ((fighter1.hp / fighter1maxHp) * 100 === 100){
+    } else if ((fighter1.hp / fighter1maxHp) * 100 === 100) {
       return "health-bar-inner-full"
     } else {
       return "health-bar-inner3"
@@ -290,18 +290,18 @@ export default function FightingArena() {
   }
 
   const getColorTwo = () => {
-    if ((fighter2.hp / fighter2maxHp) * 100 < 35){
+    if ((fighter2.hp / fighter2maxHp) * 100 < 35) {
       return "health-bar-inner1"
-    } else if ((fighter2.hp / fighter2maxHp) * 100 < 65){
+    } else if ((fighter2.hp / fighter2maxHp) * 100 < 65) {
       return "health-bar-inner2"
-    } else if ((fighter2.hp / fighter2maxHp) * 100 === 100){
+    } else if ((fighter2.hp / fighter2maxHp) * 100 === 100) {
       return "health-bar-inner-full"
-    }  else {
+    } else {
       return "health-bar-inner3"
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     const fighter1Percentage = (Math.max(fighter1.hp, 0) / fighter1maxHp) * 100;
     const fighter2Percentage = (Math.max(fighter2.hp, 0) / fighter2maxHp) * 100;
 
@@ -319,6 +319,12 @@ export default function FightingArena() {
 
   return (
     <div className="arena_body">
+      <div className='video-container'>
+        <video id='video-background' autoPlay muted loop>
+          <source src="https://res.cloudinary.com/dvmkyxyc0/video/upload/v1699357538/FondoLoopFA_acobp9.mp4 " type='video/mp4' />
+        </video>
+      </div>
+  
       <div className="arena_fighter1">
         <div className="arena_names">
           <p className="fighterName">
@@ -326,10 +332,10 @@ export default function FightingArena() {
           </p>
         </div>
         <div className="arena_fighters">
-          <img className={`fighters ${fighter1 === winner ? 'winningFighter' : fighter1 === loser ? 'losingFighter' : '' }`} src={fighter1.fullBodyImage} alt="" />
+          <img className={`fighters ${fighter1 === winner ? 'winningFighter' : fighter1 === loser ? 'losingFighter' : ''}`} src={fighter1.fullBodyImage} alt="" />
         </div>
         <div className="arena_hps">
-        <p className="hpText">HP: {Math.max(fighter1.hp, 0).toFixed(0)}</p>
+          <p className="hpText">HP: {Math.max(fighter1.hp, 0).toFixed(0)}</p>
           <div className="health-bar">
             <div
               id="fighter1HealthBar"
@@ -365,12 +371,12 @@ export default function FightingArena() {
           </p>
         </div>
         <div className="arena_fighters">
-          <img className={`fighters ${fighter2 === winner ? 'winningFighter' : fighter2 === loser ? 'losingFighter' : '' }`} src={fighter2.fullBodyImage} alt="" />
+          <img className={`fighters ${fighter2 === winner ? 'winningFighter' : fighter2 === loser ? 'losingFighter' : ''}`} src={fighter2.fullBodyImage} alt="" />
         </div>
         <div className="arena_hps">
           <p className="hpText">HP: {Math.max(fighter2.hp, 0).toFixed(0)}</p>
           <div className="health-bar">
-            <div 
+            <div
               id="fighter2HealthBar"
               className={getColorTwo()}
               style={{ width: `${(fighter2.hp / fighter2maxHp) * 100}%` }}
@@ -379,6 +385,14 @@ export default function FightingArena() {
           </div>
         </div>
       </div>
+      <div className="holita">
+      {winner === fighter1 || winner === fighter2 ? ( 
+        <div className="winner-message-container">
+            <p className="winner-text">{`${winner.name} won the battle!`}</p>
+        </div>
+      ) : "" }
+      </div>
+  
     </div>
   );
 }

@@ -11,7 +11,7 @@ export default function HomePage() {
             </video>
 
             <Link to="/CharacterSelection" className="no-decoration">
-                <div className="home-content">Choose your characters!</div>
+                <div className="home-content scale-up-center">Choose your characters!</div>
             </Link>
         </div>
     );

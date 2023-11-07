@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap");
 body {
@@ -11,12 +10,12 @@ body {
 }
 
 .gallery {
-  background: transparent; 
+  background: transparent;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .video-container {
@@ -25,7 +24,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1; /* Coloca el video detrás de otros elementos */
+  z-index: -1;
 }
 
 #video-background {
@@ -273,7 +272,7 @@ button:active {
 .button-arena {
   font-family: "Trade Winds", serif;
   font-size: 5.5rem;
-  width: 110vw;
+  width: 100vw;
   height: 200px;
   color: #fff;
   padding: 5px 10px;
@@ -314,6 +313,22 @@ button:active {
   align-items: center;
 }
 
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+#video-background {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .arena_fighter1 {
   height: 100vh;
   width: 30vw;
@@ -348,7 +363,11 @@ button:active {
 }
 
 .arena_names {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 15vh;
+  width: 30vw;
 }
 
 .arena_hps {
@@ -388,33 +407,27 @@ button:active {
 }
 
 .battle {
-  --border-size: 5px;
-  --border-angle: 0turn;
-  width: 40vw;
-  height: 80vh;
-  background-image: url("https://res.cloudinary.com/dvmkyxyc0/image/upload/v1699207370/_beaa2f6b-647f-4137-bedd-edbbde9ee1c3_ulylte.jpg"), conic-gradient(from var(--border-angle), transparent 0%, #39B5E0, #EA047E);
-  background-size: calc(100% - var(--border-size) * 2) calc(100% - var(--border-size) * 2), cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  animation: bg-spin 3s linear infinite;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-@keyframes bg-spin {
-  to {
-    --border-angle: 1turn;
-  }
+  background-size: calc(100% - var(--border-size) * 2) calc(100% - var(--border-size) * 2), cover;
+  width: 40vw;
+  height: 95vh;
+  background: rgba(106, 106, 106, 0.15);
+  border-radius: 10px;
+  backdrop-filter: blur(4.1px);
+  -webkit-backdrop-filter: blur(4.1px);
 }
 
-@property --border-angle {
-  syntax: "<angle>";
-  inherits: true;
-  initial-value: 0turn;
-}
 .fighterName {
   font-family: "Trade Winds", serif;
   font-size: 2vw;
+  background-image: url("https://res.cloudinary.com/dvmkyxyc0/image/upload/v1699308099/brush-stroke-png-47332_c9pwzb.png ");
+  background-repeat: no-repeat;
+  background-size: 20vw;
+  background-position: center;
+  width: 30vw;
+  text-align: center;
 }
 
 .chat {
@@ -579,6 +592,53 @@ button.abilityButton:hover {
   filter: drop-shadow(12px 8px 4px #fffb0f);
 }
 
+/* Estilos CSS personalizados para el mensaje del ganador */
+.winner-message-container {
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  background-size: 120% auto;
+  position: fixed;
+  width: 100vw;
+  height: 200px;
+  background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
+  opacity: 0;
+  border: 2px solid transparent;
+  animation: slideIn 3s forwards;
+  padding-bottom: 30%;
+}
+
+.winner-text {
+  font-family: "Trade Winds", serif;
+  font-size: 5vw;
+  color: #fff;
+  font-weight: bold;
+}
+
+.holita {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 50vh;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 .home-container {
   display: flex;
   justify-content: center;
@@ -613,10 +673,22 @@ button.abilityButton:hover {
   width: 50vh;
   height: 6vh;
   top: 50%;
-  left: 50%;
+  left: 37%;
   transform: translate(-50%, -50%);
 }
 
 .home-content:hover {
   background-position: right center;
+}
+
+@keyframes scale-up-center {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.scale-up-center {
+  animation: scale-up-center 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }/*# sourceMappingURL=style.css.map */
