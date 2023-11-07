@@ -1,11 +1,24 @@
-
-
 .arena_body{
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; 
+}
+
+#video-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .arena_fighter1{
@@ -42,7 +55,12 @@
 }
 
 .arena_names{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 15vh;
+    width: 30vw;
+    
     
     
 }
@@ -86,43 +104,65 @@
   }
 }
 
-.battle{
-    --border-size: 5px;
-    --border-angle: 0turn;
-    width: 40vw;
-    height: 80vh;
-    background-image: url('https://res.cloudinary.com/dvmkyxyc0/image/upload/v1699207370/_beaa2f6b-647f-4137-bedd-edbbde9ee1c3_ulylte.jpg'),
-    conic-gradient(from var(--border-angle), transparent 0%, #39B5E0, #EA047E);
-    background-size: calc(100% - (var(--border-size) * 2))
-      calc(100% - (var(--border-size) *2)),
-    cover;
-    
-    background-position: center center;
-    background-repeat: no-repeat;
-    animation: bg-spin 3s linear infinite;
-  @keyframes bg-spin {
-    to {
-      --border-angle: 1turn;
-    }
-  }
+// .battle{
+//     --border-size: 5px;
+//     --border-angle: 0turn;
+//     width: 40vw;
+//     height: 80vh;
+//     background-image: url('https://res.cloudinary.com/dvmkyxyc0/image/upload/v1699358764/Imagen_de_WhatsApp_2023-11-07_a_las_11.07.45_04f4f985_gwoimz.png'),
+//     conic-gradient(from var(--border-angle), transparent 0%, #39B5E0, #EA047E);
+//     background-size: calc(100% - (var(--border-size) * 2))
+//       calc(100% - (var(--border-size) *2)),
+//     cover;
 
+//     background-position: center center;
+//     background-repeat: no-repeat;
+//     animation: bg-spin 3s linear infinite;
+//   @keyframes bg-spin {
+//     to {
+//       --border-angle: 1turn;
+//     }
+//   }
+
+//   display: flex;
+//     flex-direction: column;
+//     align-items: center;
+
+// }
+
+// @property --border-angle {
+//   syntax: "<angle>";
+//   inherits: true;
+//   initial-value: 0turn;
+// };
+
+
+.battle {
   display: flex;
-    flex-direction: column;
-    align-items: center;
-
+  flex-direction: column;
+  align-items: center;
+  background-size: calc(100% - (var(--border-size) * 2))
+    calc(100% - (var(--border-size) *2)),
+    cover;
+  width: 40vw;
+  height: 95vh;
+  background: rgba(106, 106, 106, 0.15);
+  border-radius: 10px;
+  backdrop-filter: blur(4.1px);
+  -webkit-backdrop-filter: blur(4.1px);
 }
-
-@property --border-angle {
-  syntax: "<angle>";
-  inherits: true;
-  initial-value: 0turn;
-};
   
 
 
 .fighterName{
     font-family: 'Trade Winds', serif;
     font-size: 2vw;
+    background-image: url('https://res.cloudinary.com/dvmkyxyc0/image/upload/v1699308099/brush-stroke-png-47332_c9pwzb.png ');
+    background-repeat: no-repeat; 
+    background-size: 20vw; 
+    background-position: center;
+    width: 30vw;
+    text-align: center;
 }
 
 
@@ -154,6 +194,7 @@
       & {
         scrollbar-width: none; /* Hide scrollbar for Firefox */
       }
+
     .fighterTwo{
         border-bottom-style: double;
         border-top-style: double;
@@ -295,4 +336,55 @@ button.abilityButton {
 
 .winningFighter{
   filter: drop-shadow(12px 8px 4px #fffb0f);
+}
+
+/* Estilos CSS personalizados para el mensaje del ganador */
+.winner-message-container {
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  background-size: 120% auto;
+  position: fixed;
+  width: 100vw;
+  height: 200px;
+  background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
+  opacity: 0;
+  border: 2px solid transparent;
+  animation: slideIn 3s forwards;
+  padding-bottom: 30%;
+}
+
+.winner-text {
+  font-family: 'Trade Winds', serif;
+  font-size: 5vw;
+  color: #fff;
+  font-weight: bold;
+  // text-align: center;
+  // bottom: 50%;
+
+}
+
+.holita {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 50vh;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+@keyframes slideIn {
+  0% {
+      transform: translateX(-100%);
+      opacity: 0;
+  }
+  100% {
+      transform: translateX(0);
+      opacity: 1;
+  }
 }
