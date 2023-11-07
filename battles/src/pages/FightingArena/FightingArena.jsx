@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import MenuHeader from "../../components/MenuHeader/MenuHeader";
 
 export default function FightingArena() {
   const location = useLocation();
@@ -318,13 +319,15 @@ export default function FightingArena() {
   }, [fighter1.hp, fighter2.hp, fighter1maxHp, fighter2maxHp])
 
   return (
+    
     <div className="arena_body">
       <div className='video-container'>
         <video id='video-background' autoPlay muted loop>
           <source src="https://res.cloudinary.com/dvmkyxyc0/video/upload/v1699357538/FondoLoopFA_acobp9.mp4 " type='video/mp4' />
         </video>
       </div>
-  
+      <MenuHeader/>
+      <div className="main">
       <div className="arena_fighter1">
         <div className="arena_names">
           <p className="fighterName">
@@ -392,7 +395,7 @@ export default function FightingArena() {
         </div>
       ) : "" }
       </div>
-  
+    </div>
     </div>
   );
 }

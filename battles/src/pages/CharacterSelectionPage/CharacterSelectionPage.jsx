@@ -1,6 +1,7 @@
 import axios from 'axios';
 import CharactersGallery from '../../components/CharactersGallery/CharactersGallery';
 import { useDeferredValue, useEffect, useState } from 'react';
+import MenuHeader from '../../components/MenuHeader/MenuHeader';
 
 export default function CharacterSelectionPage() {
 

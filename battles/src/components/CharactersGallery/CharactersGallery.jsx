@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
+import MenuHeader from '../MenuHeader/MenuHeader';
 
 const CharactersGallery = ({ data }) => {
     const [characters, setCharacters] = useState([]);
@@ -66,6 +67,7 @@ const CharactersGallery = ({ data }) => {
                     <source src="https://res.cloudinary.com/dvmkyxyc0/video/upload/v1699307885/FondoLoopCS_vu8sgm.mp4" type='video/mp4' />
                 </video>
             </div>
+            <MenuHeader/>
             <div className={`gallery ${isGrayscale ? 'grayscale' : ''}`}>
                 <div className="character-container">
                     <div className="box_characters-selected1">
