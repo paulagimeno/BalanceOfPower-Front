@@ -10,12 +10,18 @@ export default function HomePage() {
                 />
             </video>
 
+            <div className="logoImg">
+                <img className="logo-name" src="https://res.cloudinary.com/dizd9f3ky/image/upload/v1699379710/LogoName_BOP_vgzn06.png" alt="logo" />
+            </div>
+
             <Link to="/CharacterSelection" className="no-decoration">
                 <div className="home-content scale-up-center">Choose your characters!</div>
             </Link>
         </div>
     );
 }
+
+
 
 
 

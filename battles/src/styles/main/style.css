@@ -316,8 +316,8 @@ button:active {
 .video-container {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: -10PX;
+  width: 102%;
   height: 100%;
   z-index: -1;
 }
@@ -672,7 +672,7 @@ button.abilityButton:hover {
   background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
   width: 50vh;
   height: 6vh;
-  top: 50%;
+  top: 60%;
   left: 37%;
   transform: translate(-50%, -50%);
 }
@@ -690,5 +690,15 @@ button.abilityButton:hover {
   }
 }
 .scale-up-center {
-  animation: scale-up-center 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: scale-up-center 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.logoImg {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.logoImg .logo-name {
+  width: 80vh;
 }/*# sourceMappingURL=style.css.map */
