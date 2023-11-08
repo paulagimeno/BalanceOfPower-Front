@@ -585,6 +585,8 @@ button.abilityButton {
 button.abilityButton:hover {
   background-image: linear-gradient(315deg, #ECCDB4 0%, #FEA1A1 75%);
   cursor: pointer;
+  color: #39B5E0;
+  border-color: #39B5E0;
 }
 
 .hpText {
