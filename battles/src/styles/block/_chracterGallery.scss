@@ -1,0 +1,320 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #ECCDB4, #FEA1A1);
+    color: rgb(255, 255, 255);
+    overflow: hidden;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.gallery {
+    background: transparent; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden; 
+}
+
+
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+}
+
+#video-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.character-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    height: 92vh;
+    z-index: 1;
+}
+
+
+.character-selected1 {
+    position: absolute;
+    z-index: 1;
+}
+
+
+.character-selected2 {
+    position: absolute;
+    z-index: 1;
+    
+}
+
+.character-selected1 .img-character1, 
+.character-selected2 .img-character2 {
+    width: 600px;
+    height: 700px;
+    object-fit: cover;
+    
+}
+
+.character-selected1 .p-name, 
+.character-selected2 .p-name {
+    font-size: 4rem;
+    position: absolute;
+    color: #fff; 
+    padding: 5px; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center; 
+    //IMG FONDO NOMBRES
+    background-image: url('https://res.cloudinary.com/dvmkyxyc0/image/upload/v1699308099/brush-stroke-png-47332_c9pwzb.png ');
+    background-repeat: no-repeat; 
+    background-size: contain; 
+    background-position: center;
+}
+
+.charcters-selection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Trade Winds', serif;
+    gap: 10px;
+}
+
+.character-selected1,
+.character-selected2 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+}
+
+.box-gallery {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60vw;
+    z-index: 2;
+}
+
+h1 {
+    text-align: center;
+
+}
+
+.character-filter {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    
+}
+
+.button-filter {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    font-size: 0.8rem;
+    min-width: 100px;
+    height: 30px;
+    color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    background-size: 120% auto;
+    background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
+}
+
+button:hover {
+    background-position: right center;
+}
+
+button:active {
+    top: 2px;
+}
+
+.character-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+
+.character-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8vw;
+    justify-content: center;
+
+}
+
+.character-item {
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s;
+    z-index: 1; 
+}
+
+.character-img {
+    display: block;
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.character-overlay {
+    text-decoration: none;
+    position: absolute;
+    overflow: hidden;
+    bottom: 0px;
+    height: 0;
+    transition: 0.3s ease;
+    color: white;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+}
+
+.character-name {
+    font-size: 0.9vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: 'Trade Winds', serif;
+}
+
+.fighter1,
+.fighter2 {
+    border: 5px solid transparent;
+    transform: scale(1.1);
+    border-radius: 10px;
+    border-image-slice: 1;
+}
+
+.character-item:hover {
+    transform: scale(1.1);
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.character-item:hover .character-overlay {
+    background-color: #39393979;
+    margin-bottom: 30px;
+    height: 20%;
+    width: 100%;
+    display: block;
+    transform: rotate(5deg);
+    overflow: hidden;
+    border-top: 2px solid rgba(255, 183, 106, 0.822);
+    border-bottom: 2px solid rgba(255, 183, 106, 0.822);
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.characters-button {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.slide-in {
+    animation: slideIn 1s forwards;
+}
+
+.button-ready {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    text-align: center;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    
+
+    .ready {
+        font-family: 'Trade Winds', serif;
+        font-size: 1.2rem;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        outline: none;
+        border-radius: 5px;
+        border: none;
+        background-size: 120% auto;
+        background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
+        width: 40vh;
+        height: 4vh;
+    }
+}
+
+.button-arena {
+    font-family: 'Trade Winds', serif;
+    font-size: 5.5rem;
+    width: 100vw;
+    height: 200px;
+    color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    outline: none;
+    border: none;
+    background-size: 120% auto;
+    background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
+    opacity: 0;
+    border: 2px solid transparent;
+    animation: slideIn 1s forwards;
+
+}
+
+.rotate-button {
+    transform: rotate(-5deg);
+}
+
+.button-arena:hover {
+    background-position: right center;
+}
+
+.button-arena:active {
+    top: 2px;
+}
+
+
+.grayscale {
+    filter: saturate(30%);
+    transition: filter 0.5s;
+
+}

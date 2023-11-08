@@ -1,0 +1,37 @@
+.menuHeader{
+    width: 100vw;
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-start;
+    padding-top: 0.5vh;
+}
+
+.volver{
+    margin-left: 3vw;
+    display: flex;
+    align-items: center;
+    font-size: 1.7vw;
+    cursor: pointer;
+    font-family: 'Trade Winds', serif;
+    height: 100%;
+}
+.flecha{
+    margin-right: 1vw;
+    cursor: pointer
+}
+.house{
+    width: 4vw;
+    margin-right: 3vw;
+    cursor: pointer;
+}
+.homeLink{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer
+}
+.back{
+    cursor: pointer;
+}
