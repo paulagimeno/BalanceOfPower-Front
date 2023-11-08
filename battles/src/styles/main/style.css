@@ -767,6 +767,10 @@ button.abilityButton:hover {
   cursor: pointer;
 }
 
+.back {
+  cursor: pointer;
+}
+
 * {
   cursor: default;
 }/*# sourceMappingURL=style.css.map */
