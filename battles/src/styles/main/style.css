@@ -324,8 +324,8 @@ button:active {
 .video-container {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: -10PX;
+  width: 102%;
   height: 100%;
   z-index: -1;
 }
@@ -665,7 +665,7 @@ button.abilityButton:hover {
 .home-content {
   font-family: "Trade Winds", serif;
   font-size: 1.5rem;
-  color: #ECCDB4;
+  color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
   position: absolute;
@@ -677,10 +677,10 @@ button.abilityButton:hover {
   border-radius: 15px;
   border: none;
   background-size: 120% auto;
-  background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
+  background-image: linear-gradient(315deg, #FEA1A1 0%, #ECCDB4 75%);
   width: 50vh;
   height: 6vh;
-  top: 50%;
+  top: 60%;
   left: 37%;
   transform: translate(-50%, -50%);
 }
@@ -688,19 +688,45 @@ button.abilityButton:hover {
 .home-content:hover {
   background-position: right center;
 }
-
-@keyframes scale-up-center {
+@keyframes fade-in-fwd {
   0% {
-    transform: scale(0.5);
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+.fade-in-fwd {
+  animation: fade-in-fwd 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.logoImg {
+  position: absolute;
+  top: 45%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+}
+.logoImg .logo-name {
+  width: 70vh;
+}
+.logoImg .puff-in-center {
+  animation: puff-in-center 1.5s cubic-bezier(0.47, 0, 0.745, 0.715) both;
+}
+
+@keyframes puff-in-center {
+  0% {
+    transform: scale(2);
+    filter: blur(4px);
+    opacity: 0;
   }
   100% {
     transform: scale(1);
+    filter: blur(0);
+    opacity: 1;
   }
 }
-.scale-up-center {
-  animation: scale-up-center 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-}
-
 .menuHeader {
   width: 100vw;
   height: 8vh;
@@ -727,6 +753,7 @@ button.abilityButton:hover {
 }
 
 .house {
+  width: 4vw;
   margin-right: 3vw;
   cursor: pointer;
 }
