@@ -338,7 +338,6 @@ export default function FightingArena() {
           <img className={`fighters ${fighter1 === winner ? 'winningFighter' : fighter1 === loser ? 'losingFighter' : ''}`} src={fighter1.fullBodyImage} alt="" />
         </div>
         <div className="arena_hps">
-          <p className="hpText">HP: {Math.max(fighter1.hp, 0).toFixed(0)}</p>
           <div className="health-bar">
             <div
               id="fighter1HealthBar"
@@ -347,6 +346,7 @@ export default function FightingArena() {
             >
             </div>
           </div>
+          <p className="hpText">HP: {Math.max(fighter1.hp, 0).toFixed(0)}</p>
         </div>
       </div>
       <div className="arena_battle">
@@ -377,7 +377,7 @@ export default function FightingArena() {
           <img className={`fighters ${fighter2 === winner ? 'winningFighter' : fighter2 === loser ? 'losingFighter' : ''}`} src={fighter2.fullBodyImage} alt="" />
         </div>
         <div className="arena_hps">
-          <p className="hpText">HP: {Math.max(fighter2.hp, 0).toFixed(0)}</p>
+          
           <div className="health-bar">
             <div
               id="fighter2HealthBar"
@@ -386,6 +386,7 @@ export default function FightingArena() {
             >
             </div>
           </div>
+          <p className="hpText">HP: {Math.max(fighter2.hp, 0).toFixed(0)}</p>
         </div>
       </div>
       <div className="holita">

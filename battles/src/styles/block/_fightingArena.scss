@@ -55,7 +55,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow-x: visible;
+    overflow-y: visible;
+    
 
     img{
         object-fit: cover;
@@ -69,6 +71,7 @@
     align-items: center;
     height: 10%;
     width: 30vw;
+    z-index: 2;
     
     
     
