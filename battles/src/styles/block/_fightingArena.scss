@@ -2,8 +2,17 @@
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+    
+}
+
+.main{
+  width: 100vw;
+  height: 92vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .video-container {
@@ -22,7 +31,7 @@
 }
 
 .arena_fighter1{
-    height: 100vh;
+    height: 100%;
     width: 30vw;
     display: flex;
     flex-direction: column;
@@ -31,7 +40,7 @@
 }
 
 .arena_fighter2{
-    height: 100vh;
+    height: 100%;
     width: 30vw;
     display: flex;
     flex-direction: column;
@@ -41,7 +50,7 @@
 }
 
 .arena_fighters{
-    height: 70vh;
+    height: 70%;
     width: 30vw;
     display: flex;
     align-items: center;
@@ -58,7 +67,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 15vh;
+    height: 10%;
     width: 30vw;
     
     
@@ -66,7 +75,7 @@
 }
 
 .arena_hps{
-    height: 15vh;
+    height: 15%;
     width: 50%;
     font-size: 1.2vw;
     padding-top: 1vw;
@@ -145,7 +154,7 @@
     calc(100% - (var(--border-size) *2)),
     cover;
   width: 40vw;
-  height: 95vh;
+  height: 87vh;
   background: rgba(106, 106, 106, 0.15);
   border-radius: 10px;
   backdrop-filter: blur(4.1px);

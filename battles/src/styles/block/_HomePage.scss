@@ -4,7 +4,7 @@
     align-items: center;
     height: 100vh;
     background-color: #000;
-    
+
 }
 
 #video-background {
@@ -16,7 +16,7 @@
 .home-content {
     font-family: 'Trade Winds', serif;
     font-size: 1.5rem;
-    color: #ECCDB4;
+    color: #fff;
     cursor: pointer;
     transition: all 0.3s ease;
     position: absolute;
@@ -28,7 +28,7 @@
     border-radius: 15px;
     border: none;
     background-size: 120% auto;
-    background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
+    background-image: linear-gradient(315deg, #FEA1A1 0%, #ECCDB4 75%);
     width: 50vh;
     height: 6vh;
     top: 60%;
@@ -42,30 +42,66 @@
 
 }
 
-@keyframes scale-up-center {
-
+@-webkit-keyframes fade-in-fwd {
     0% {
-        transform: scale(.5)
+        -webkit-transform: translateZ(-80px);
+        transform: translateZ(-80px);
+        opacity: 0;
     }
 
     100% {
-        transform: scale(1)
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
     }
 }
 
-.scale-up-center {
-    animation: scale-up-center 1s cubic-bezier(.39, .575, .565, 1.000) both
+@keyframes fade-in-fwd {
+    0% {
+        -webkit-transform: translateZ(-80px);
+        transform: translateZ(-80px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+}
+
+.fade-in-fwd {
+    -webkit-animation: fade-in-fwd 1.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: fade-in-fwd 1.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
 
 //Logo
 .logoImg {
     position: absolute;
-    top: 40%;
-    left: 50%;
+    top: 45%;
+    left: 49%;
     transform: translate(-50%, -50%);
 
     .logo-name {
-        width: 80vh;
+        width: 70vh;
+    }
+
+    .puff-in-center {
+        animation: puff-in-center 1.5s cubic-bezier(.47, 0.000, .745, .715) both
+    }
+}
+
+@keyframes puff-in-center {
+    0% {
+        transform: scale(2);
+        filter: blur(4px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        filter: blur(0);
+        opacity: 1;
     }
 }
