@@ -5,7 +5,7 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import MenuHeader from '../MenuHeader/MenuHeader';
 
-const CharactersGallery = ({ data }) => {
+const CharactersGallery = () => {
     const [characters, setCharacters] = useState([]);
     const [fighter1, setFighter1] = useState(null);
     const [fighter2, setFighter2] = useState(null);
@@ -51,11 +51,16 @@ const CharactersGallery = ({ data }) => {
         }
     }
 
+    const extractAttributeValue = (attribute) => {
+        const type = Object.keys(attribute)[0];
+        return attribute[type];
+    };
+
     const filterCharacters = (Category) => {
         setFilter(Category);
     }
 
-    const filteredCharacters = filter === "All" ? characters : characters.filter((character) => character.Category === filter);
+    const filteredCharacters = filter === "All" ? characters : characters.filter((character) => extractAttributeValue(character.Category) === filter);
 
     useEffect(() => {
 
@@ -72,10 +77,7 @@ const CharactersGallery = ({ data }) => {
         setIsMoveToArena(true);
     }
 
-    const extractAttributeValue = (attribute) => {
-        const type = Object.keys(attribute)[0];
-        return attribute[type];
-    };
+    
 
     return (
         <div className='gallery'>
