@@ -12,70 +12,114 @@ export default function FightingArena() {
   const [playerChoice, setPlayerChoice] = useState("");
   const [attacker, setAttacker] = useState();
   const [defender, setDefender] = useState();
-  const [fighter1maxHp, setFighter1maxHp] = useState(fighter1.hp);
-  const [fighter2maxHp, setFighter2maxHp] = useState(fighter2.hp);
+
+  
   const [winner, setWinner] = useState();
   const [loser, setLoser] = useState();
   const chatContainerRef = useRef();
 
+  const extractAttributeValue = (attribute) => {
+    const type = Object.keys(attribute)[0];
+    return attribute[type];
+  };
+
+  const processFighterObject = (fighter) => {
+    const processedFighter = {};
+    for (const key in fighter) {
+      if (fighter.hasOwnProperty(key)) {
+        processedFighter[key] = extractAttributeValue(fighter[key]);
+      }
+    }
+    return processedFighter;
+  };
+
+
+
+const newFighter1 = processFighterObject(fighter1);
+const newFighter2 = processFighterObject(fighter2);
+
+const [fighter2CurrentHp, setFighter2CurrentHp] = useState(newFighter2.Hp);
+const [fighter1CurrentHp, setFighter1CurrentHp] = useState(newFighter1.Hp);
+
+const [fighter1maxHp, setFighter1maxHp] = useState(newFighter1.Hp);
+const [fighter2maxHp, setFighter2maxHp] = useState(newFighter2.Hp);
+
+useEffect(() => {
+  console.log('newFighter2.Hp:', newFighter2.Hp);
+  setFighter2CurrentHp((prevHp) => newFighter2.Hp);
+}, [newFighter2.Hp]);
+
+useEffect(() => {
+  console.log('newFighter1.Hp:', newFighter1.Hp);
+  setFighter1CurrentHp((prevHp) => newFighter1.Hp);
+}, [newFighter1.Hp]);
+
+console.log(newFighter1)
+console.log("max hp", fighter1maxHp)
+console.log('anotha one', newFighter1.Hp)
+
   const abilities = {
     strike: (attacker, defender) => {
       const damage = calculateDamage(
-        attacker.strenght,
-        attacker.crit,
-        defender.defense
+        attacker.Strength,
+        attacker.Crit,
+        defender.Defense
       );
-      defender.hp -= damage;
-      return `${attacker.name} used Strike and dealt ${damage} damage.`;
+      defender.Hp -= damage;
+      return `${attacker.Name} used Strike and dealt ${damage} damage.`;
     },
     execute: (attacker, defender) => {
       const randomNum = Math.floor(Math.random() * 10) + 1;
       if (randomNum === 1) {
-        const damage = defender.hp;
-        defender.hp -= damage;
-        return `${attacker.name} successfully executed ${defender.name}.`;
+        const damage = defender.Hp;
+        defender.Hp -= damage;
+        return `${attacker.Name} successfully executed ${defender.Name}.`;
       } else {
-        return `${attacker.name}'s attack missed!`;
+        return `${attacker.Name}'s attack missed!`;
       }
     },
     heal: (attacker, defender) => {
-      const recover = calculateRecover(attacker.strenght, attacker.crit);
-      attacker.hp += recover;
-      return `${attacker.name} used Heal and recovered ${recover} Health Points.`;
+      const recover = calculateRecover(attacker.Strength, attacker.Crit);
+      attacker.Hp += recover;
+      return `${attacker.Name} used Heal and recovered ${recover} Health Points.`;
     },
     block: (attacker, defender) => {
       const extraHP = attacker.defense; // Modify as needed.
       attacker.extraHP = extraHP;
-      return `${attacker.name} used Shield and gained a ${extraHP} points of shield.`;
+      return `${attacker.Name} used Shield and gained a ${extraHP} points of shield.`;
     },
   };
 
-  const calculateDamage = (strength, crit, defense) => {
+  const calculateDamage = (Strength, Crit, Defense) => {
+    console.log("Strength is", Strength)
+    console.log("holita", Strength[1].N)
+    console.log("holiwis", Strength[0].N)
     const baseDamage =
-      Math.floor(Math.random() * (strength[1] - strength[0] + 1)) + strength[0];
+      Math.floor(Math.random() * (parseInt(Strength[1].N) - parseInt(Strength[0].N) +1)) + parseInt(Strength[0].N);
     const randomNumber = Math.floor(Math.random() * 2) + 1;
     let critMultiplier;
     if (randomNumber === 1) {
-      critMultiplier = crit / 100;
+      critMultiplier = Crit / 100;
     } else {
       critMultiplier = 0;
     }
-
+    console.log("baseDamage is:", baseDamage);
+    console.log("crit is:", critMultiplier);
     const damage = (
       baseDamage * 2 +
       baseDamage * critMultiplier -
-      defense
+      Defense
     ).toFixed(0);
     return parseFloat(damage);
   };
 
-  const calculateRecover = (strength, crit) => {
+  const calculateRecover = (Strength, Crit) => {
     const baseRecover =
-      Math.floor(Math.random() * (strength[1] - strength[0] + 1)) + strength[0];
+      Math.floor(Math.random() * (Strength[1] - Strength[0] + 1)) + Strength[0];
     const randomNumber = Math.floor(Math.random() * 2) + 1;
     let critMultiplier;
     if (randomNumber === 1) {
-      critMultiplier = crit / 100;
+      critMultiplier = Crit / 100;
     } else {
       critMultiplier = 0;
     }
@@ -86,37 +130,39 @@ export default function FightingArena() {
 
   const battle = () => {
     const steps = [];
-
+    
     setBattleStarted(true);
     setBattleSteps(steps);
 
-    steps.push(`${fighter1.name} and ${fighter2.name} are ready for battle!`);
+    steps.push(`${newFighter1.Name} and ${newFighter2.Name} are ready for battle!`);
 
     let attacker;
-    if (fighter1.speed > fighter2.speed) {
-      attacker = fighter1;
-    } else if (fighter1.speed < fighter2.speed) {
-      attacker = fighter2;
+    if (newFighter1.Speed > newFighter2.Speed) {
+      attacker = newFighter1;
+    } else if (newFighter1.Speed < newFighter2.Speed) {
+      attacker = newFighter2;
     } else {
       const randomNumber = Math.floor(Math.random() * 2) + 1;
       if (randomNumber === 1) {
-        attacker = fighter1;
+        attacker = newFighter1;
       } else {
-        attacker = fighter2;
+        attacker = newFighter2;
       }
     }
 
-    let defender = attacker === fighter1 ? fighter2 : fighter1;
+    let defender = attacker === newFighter1 ? newFighter2 : newFighter1;
 
     setAttacker(attacker);
     setDefender(defender);
 
     const battleStep = (attacker, defender) => {
-      if (fighter1.hp > 0 && fighter2.hp > 0) {
-        steps.push(`It's ${attacker.name}'s turn.`);
+      console.log("currentito hp", newFighter1.Hp)
+      console.log("holita hp", newFighter2.Hp)
+      if (newFighter1.Hp > 0 && newFighter2.Hp > 0) {
+        steps.push(`It's ${attacker.Name}'s turn.`);
         steps.push("Choose your next move:");
 
-        if (attacker.category === "DPS") {
+        if (attacker.Category === "DPS") {
           steps.push(
             <div>
               <button className="abilityButton"
@@ -131,7 +177,7 @@ export default function FightingArena() {
               </button>
             </div>
           );
-        } else if (attacker.category === "Healer") {
+        } else if (attacker.Category === "Healer") {
           steps.push(
             <div>
               <button className="abilityButton"
@@ -144,7 +190,7 @@ export default function FightingArena() {
               </button>
             </div>
           );
-        } else if (attacker.category === "Tank") {
+        } else if (attacker.Category === "Tank") {
           steps.push(
             <div>
               <button className="abilityButton"
@@ -160,12 +206,12 @@ export default function FightingArena() {
             </div>
           );
         }
-      } else if (fighter1.hp <= 0 || fighter2.hp <= 0) {
-        const won = fighter1.hp > 0 ? fighter1 : fighter2;
-        const lost = won === fighter1 ? fighter2 : fighter1;
+      } else if (newFighter1.Hp <= 0 || newFighter2.Hp <= 0) {
+        const won = newFighter1.Hp > 0 ? newFighter1 : newFighter2;
+        const lost = won === newFighter1 ? newFighter2 : newFighter1;
         setWinner(won);
         setLoser(lost);
-        steps.push(`${won.name} won the battle!`);
+        steps.push(`${won.Name} won the battle!`);
       }
     };
 
@@ -179,61 +225,61 @@ export default function FightingArena() {
       if (playerChoice === "Strike") {
         steps.pop();
         const abilityResult = abilities.strike(attacker, defender);
-        console.log(`${defender.name} hp is ${defender.hp}`);
+        
         steps.push(abilityResult);
         if (defender.extraHP && defender.extraHP > 0) {
-          defender.hp += defender.extraHP;
+          defender.Hp += defender.extraHP;
           steps.push(
-            `${defender.name} blocked ${defender.extraHP} damage with the Shield.`
+            `${defender.Name} blocked ${defender.extraHP} damage with the Shield.`
           ); // Reset the extraHP after it's consumed.
           defender.extraHP = 0;
         }
         console.log(steps);
         setPlayerChoice("");
-        attacker = attacker === fighter1 ? fighter2 : fighter1;
-        defender = attacker === fighter2 ? fighter1 : fighter2;
+        attacker = attacker === newFighter1 ? newFighter2 : newFighter1;
+        defender = attacker === newFighter2 ? newFighter1 : newFighter2;
         setAttacker(attacker);
         setDefender(defender);
-        console.log(`now the attacker will be ${attacker.name}`);
+        console.log(`now the attacker will be ${attacker.Name}`);
         battleStep(attacker, defender);
       } else if (playerChoice === "Execute") {
         steps.pop();
         const abilityResult = abilities.execute(attacker, defender);
-        console.log(`${defender.name} hp is ${defender.hp}`);
+        
         steps.push(abilityResult);
         console.log(steps);
         setPlayerChoice("");
-        attacker = attacker === fighter1 ? fighter2 : fighter1;
-        defender = attacker === fighter2 ? fighter1 : fighter2;
+        attacker = attacker === newFighter1 ? newFighter2 : newFighter1;
+        defender = attacker === newFighter2 ? newFighter1 : newFighter2;
         setAttacker(attacker);
         setDefender(defender);
-        console.log(`now the attacker will be ${attacker.name}`);
+      
         battleStep(attacker, defender);
       } else if (playerChoice === "Heal") {
         steps.pop();
         const abilityResult = abilities.heal(attacker, defender);
-        console.log(`${defender.name} hp is ${defender.hp}`);
+        
         steps.push(abilityResult);
-        console.log(steps);
+       
         setPlayerChoice("");
-        attacker = attacker === fighter1 ? fighter2 : fighter1;
-        defender = attacker === fighter2 ? fighter1 : fighter2;
+        attacker = attacker === newFighter1 ? newFighter2 : newFighter1;
+        defender = attacker === newFighter2 ? newFighter1 : newFighter2;
         setAttacker(attacker);
         setDefender(defender);
-        console.log(`now the attacker will be ${attacker.name}`);
+      
         battleStep(attacker, defender);
       } else if (playerChoice === "Block") {
         steps.pop();
         const abilityResult = abilities.block(attacker, defender);
-        console.log(`${defender.name} hp is ${defender.hp}`);
+        
         steps.push(abilityResult);
-        console.log(steps);
+      
         setPlayerChoice("");
-        attacker = attacker === fighter1 ? fighter2 : fighter1;
-        defender = attacker === fighter2 ? fighter1 : fighter2;
+        attacker = attacker === newFighter1 ? newFighter2 : newFighter1;
+        defender = attacker === newFighter2 ? newFighter1 : newFighter2;
         setAttacker(attacker);
         setDefender(defender);
-        console.log(`now the attacker will be ${attacker.name}`);
+      
         battleStep(attacker, defender);
       }
     };
@@ -252,6 +298,7 @@ export default function FightingArena() {
         if (currentStep + 1 < battleSteps.length)
           setCurrentStep(currentStep + 1);
         console.log(currentStep);
+        console.log("por favor", newFighter2.Hp)
       }, 1000);
 
       return () => clearInterval(timer);
@@ -268,22 +315,23 @@ export default function FightingArena() {
   const getStepClass = (step) => {
     const stepText = getStepText(step);
 
-    if (stepText.includes(fighter1.name) && stepText.includes(fighter2.name)) {
+    if (stepText.includes(newFighter1.Name) && stepText.includes(newFighter2.Name)) {
       return "bothFighters";
-    } else if (stepText.includes(fighter1.name)) {
+    } else if (stepText.includes(newFighter1.Name)) {
       return "fighterOne";
-    } else if (stepText.includes(fighter2.name)) {
+    } else if (stepText.includes(newFighter2.Name)) {
       return "fighterTwo";
-    }
+    } else {
     return "noFighter";
+    }
   };
 
   const getColorOne = () => {
-    if ((fighter1.hp / fighter1maxHp) * 100 < 35) {
+    if ((newFighter1.Hp / fighter1maxHp) * 100 < 35) {
       return "health-bar-inner1"
-    } else if ((fighter1.hp / fighter1maxHp) * 100 < 65) {
+    } else if ((newFighter1.Hp / fighter1maxHp) * 100 < 65) {
       return "health-bar-inner2"
-    } else if ((fighter1.hp / fighter1maxHp) * 100 === 100) {
+    } else if ((newFighter1.Hp / fighter1maxHp) * 100 === 100) {
       return "health-bar-inner-full"
     } else {
       return "health-bar-inner3"
@@ -291,11 +339,11 @@ export default function FightingArena() {
   }
 
   const getColorTwo = () => {
-    if ((fighter2.hp / fighter2maxHp) * 100 < 35) {
+    if ((newFighter2.Hp / fighter2maxHp) * 100 < 35) {
       return "health-bar-inner1"
-    } else if ((fighter2.hp / fighter2maxHp) * 100 < 65) {
+    } else if ((newFighter2.Hp / fighter2maxHp) * 100 < 65) {
       return "health-bar-inner2"
-    } else if ((fighter2.hp / fighter2maxHp) * 100 === 100) {
+    } else if ((newFighter2.Hp / fighter2maxHp) * 100 === 100) {
       return "health-bar-inner-full"
     } else {
       return "health-bar-inner3"
@@ -303,9 +351,9 @@ export default function FightingArena() {
   }
 
   useEffect(() => {
-    const fighter1Percentage = (Math.max(fighter1.hp, 0) / fighter1maxHp) * 100;
-    const fighter2Percentage = (Math.max(fighter2.hp, 0) / fighter2maxHp) * 100;
-
+    const fighter1Percentage = (Math.max(fighter1CurrentHp, 0) / fighter1maxHp) * 100;
+    const fighter2Percentage = (Math.max(fighter2CurrentHp, 0) / fighter2maxHp) * 100;
+    console.log('inside hp:', newFighter1.Hp)
     const fighter1HealthBar = document.getElementById("fighter1HealthBar");
     if (fighter1HealthBar) {
       fighter1HealthBar.style.width = `${fighter1Percentage}%`;
@@ -316,7 +364,7 @@ export default function FightingArena() {
       fighter2HealthBar.style.width = `${fighter2Percentage}%`;
     }
 
-  }, [fighter1.hp, fighter2.hp, fighter1maxHp, fighter2maxHp])
+  }, [fighter1maxHp, fighter2maxHp, fighter1CurrentHp, fighter2CurrentHp])
 
   return (
     
@@ -331,22 +379,21 @@ export default function FightingArena() {
       <div className="arena_fighter1">
         <div className="arena_names">
           <p className="fighterName">
-            {fighter1 ? fighter1.name.toUpperCase() : "Not selected"}
+            {newFighter1 ? newFighter1.Name.toUpperCase() : "Not selected"}
           </p>
         </div>
         <div className="arena_fighters">
-          <img className={`fighters ${fighter1 === winner ? 'winningFighter' : fighter1 === loser ? 'losingFighter' : ''}`} src={fighter1.fullBodyImage} alt="" />
+          <img className={`fighters ${newFighter1 === winner ? 'winningFighter' : newFighter1 === loser ? 'losingFighter' : ''}`} src={newFighter1.FullBodyImage} alt="" />
         </div>
         <div className="arena_hps">
           <div className="health-bar">
             <div
               id="fighter1HealthBar"
               className={getColorOne()}
-              style={{ width: `${(fighter1.hp / fighter1maxHp) * 100}%` }}
             >
             </div>
           </div>
-          <p className="hpText">HP: {Math.max(fighter1.hp, 0).toFixed(0)}</p>
+          <p className="hpText">HP: {Math.max(fighter1CurrentHp, 0).toFixed(0)}</p>
         </div>
       </div>
       <div className="arena_battle">
@@ -370,11 +417,11 @@ export default function FightingArena() {
       <div className="arena_fighter2">
         <div className="arena_names">
           <p className="fighterName">
-            {fighter2 ? fighter2.name.toUpperCase() : "Not selected"}
+            {newFighter2 ? newFighter2.Name.toUpperCase() : "Not selected"}
           </p>
         </div>
         <div className="arena_fighters">
-          <img className={`fighters ${fighter2 === winner ? 'winningFighter' : fighter2 === loser ? 'losingFighter' : ''}`} src={fighter2.fullBodyImage} alt="" />
+          <img className={`fighters ${newFighter2 === winner ? 'winningFighter' : newFighter2 === loser ? 'losingFighter' : ''}`} src={newFighter2.FullBodyImage} alt="" />
         </div>
         <div className="arena_hps">
           
@@ -382,17 +429,16 @@ export default function FightingArena() {
             <div
               id="fighter2HealthBar"
               className={getColorTwo()}
-              style={{ width: `${(fighter2.hp / fighter2maxHp) * 100}%` }}
             >
             </div>
           </div>
-          <p className="hpText">HP: {Math.max(fighter2.hp, 0).toFixed(0)}</p>
+          <p className="hpText">HP: {Math.max(parseInt(fighter2CurrentHp), 0).toFixed(0)}</p>
         </div>
       </div>
       <div className="holita">
-      {winner === fighter1 || winner === fighter2 ? ( 
+      {winner === newFighter1 || winner === newFighter2 ? ( 
         <div className="winner-message-container">
-            <p className="winner-text">{`${winner.name} won the battle!`}</p>
+            <p className="winner-text">{`${winner.Name} won the battle!`}</p>
         </div>
       ) : "" }
       </div>
