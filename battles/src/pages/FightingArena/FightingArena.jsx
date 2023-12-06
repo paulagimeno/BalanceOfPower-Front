@@ -206,6 +206,12 @@ console.log('anotha one', newFighter1.Hp)
             </div>
           );
         }
+
+        executeAttack(playerChoice, attacker, defender);
+
+        setFighter1CurrentHp(newFighter1.Hp);
+        setFighter2CurrentHp(newFighter2.Hp);
+
       } else if (newFighter1.Hp <= 0 || newFighter2.Hp <= 0) {
         const won = newFighter1.Hp > 0 ? newFighter1 : newFighter2;
         const lost = won === newFighter1 ? newFighter2 : newFighter1;
@@ -354,6 +360,7 @@ console.log('anotha one', newFighter1.Hp)
     const fighter1Percentage = (Math.max(fighter1CurrentHp, 0) / fighter1maxHp) * 100;
     const fighter2Percentage = (Math.max(fighter2CurrentHp, 0) / fighter2maxHp) * 100;
     console.log('inside hp:', newFighter1.Hp)
+
     const fighter1HealthBar = document.getElementById("fighter1HealthBar");
     if (fighter1HealthBar) {
       fighter1HealthBar.style.width = `${fighter1Percentage}%`;
