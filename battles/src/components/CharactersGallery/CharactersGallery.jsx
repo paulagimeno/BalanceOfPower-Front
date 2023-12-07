@@ -94,7 +94,7 @@ const CharactersGallery = () => {
                             {fighter1 && (
                                 <div className="character-selected1">
                                     <img className='img-character1' src={extractAttributeValue(fighter1.FullBodyImage)} alt={extractAttributeValue(fighter1.Name)} />
-                                    <p className='p-name'>{extractAttributeValue(fighter1.Name)}</p>
+                                    <p className='p-name1'>{extractAttributeValue(fighter1.Name)}</p>
                                 </div>
                             )}
                         </div>
@@ -134,7 +134,7 @@ const CharactersGallery = () => {
                             {fighter2 && (
                                 <div className="character-selected2">
                                     <img className='img-character2' src={extractAttributeValue(fighter2.FullBodyImage)} alt={extractAttributeValue(fighter2.Name)} />
-                                    <p className='p-name'>{extractAttributeValue(fighter2.Name)}</p>
+                                    <p className='p-name2'>{extractAttributeValue(fighter2.Name)}</p>
                                 </div>
                             )}
                         </div>
