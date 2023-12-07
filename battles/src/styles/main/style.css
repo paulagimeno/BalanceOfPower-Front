@@ -9,7 +9,7 @@ body {
   font-size: 1rem;
   font-family: "Josefin Sans", sans-serif;
 }
-@media (max-width: 844px) {
+@media (max-width: 932px) {
   body {
     font-size: 0.8rem;
   }
@@ -49,7 +49,7 @@ body {
   height: 92vh;
   z-index: 1;
 }
-@media (max-width: 844px) {
+@media (max-width: 932px) {
   .character-container {
     font-size: 0.8rem;
   }
@@ -72,7 +72,7 @@ body {
   -o-object-fit: cover;
      object-fit: cover;
 }
-@media (max-width: 844px) {
+@media (max-width: 932px) {
   .character-selected1 .img-character1,
   .character-selected2 .img-character2 {
     width: 250px;
@@ -83,7 +83,7 @@ body {
 .img-character2 {
   margin-right: 200px;
 }
-@media (max-width: 844px) {
+@media (max-width: 932px) {
   .img-character2 {
     width: 150px;
     height: 250px;
@@ -94,7 +94,7 @@ body {
 .img-character1 {
   margin-left: 200px;
 }
-@media (max-width: 844px) {
+@media (max-width: 932px) {
   .img-character1 {
     width: 250px;
     height: 350px;
@@ -117,7 +117,7 @@ body {
   background-size: contain;
   background-position: center;
 }
-@media (max-width: 844px) {
+@media (max-width: 932px) {
   .character-selected1 .p-name1,
   .character-selected2 .p-name2 {
     font-size: 2rem;
@@ -154,7 +154,7 @@ body {
   width: 90vw;
   z-index: 2;
 }
-@media (max-width: 844px) {
+@media (max-width: 932px) {
   .box-gallery {
     width: 100vw;
   }
@@ -190,7 +190,7 @@ h1 {
   background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
 }
 
-@media (max-width: 844px) {
+@media (max-width: 932px) {
   .character-filter {
     display: flex;
     justify-content: center;
@@ -243,7 +243,7 @@ button:active {
      object-fit: cover;
   border-radius: 10px;
 }
-@media (max-width: 844px) {
+@media (max-width: 932px) {
   .character-img {
     width: 80px;
     height: 120px;
@@ -317,7 +317,7 @@ button:active {
   transform: translateX(-50%);
   z-index: 2;
 }
-@media (max-width: 844px) {
+@media (max-width: 932px) {
   .characters-button {
     bottom: 175px;
   }
@@ -353,7 +353,7 @@ button:active {
   width: 40vh;
   height: 5vh;
 }
-@media (max-width: 844px) {
+@media (max-width: 932px) {
   .button-ready .ready {
     font-size: 0.8rem;
   }
@@ -377,7 +377,7 @@ button:active {
   border: 2px solid transparent;
   animation: slideIn 1s forwards;
 }
-@media (max-width: 844px) {
+@media (max-width: 932px) {
   .button-arena {
     margin-bottom: -50px;
     font-size: 3rem;
@@ -409,6 +409,7 @@ button:active {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 
 .main {
@@ -422,10 +423,21 @@ button:active {
 .video-container {
   position: absolute;
   top: 0;
-  left: -10PX;
   width: 102%;
-  height: 100%;
+  left: -1vw;
+  height: 102%;
   z-index: -1;
+}
+@media (max-width: 932px) {
+  .video-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 100%;
+    z-index: -1;
+    overflow-y: hidden;
+  }
 }
 
 #video-background {
@@ -458,10 +470,10 @@ button:active {
   height: 70%;
   width: 30vw;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   overflow-x: visible;
-  overflow-y: visible;
+  overflow-y: hidden;
 }
 .arena_fighters img {
   -o-object-fit: cover;
@@ -692,6 +704,7 @@ button.abilityButton:hover {
 
 .hpText {
   margin: 0%;
+  font-size: 2vw;
 }
 
 .losingFighter {
@@ -704,7 +717,6 @@ button.abilityButton:hover {
 }
 
 .winner-message-container {
-  padding: 5px 10px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -716,7 +728,7 @@ button.abilityButton:hover {
   background-size: 120% auto;
   position: fixed;
   width: 100vw;
-  height: 200px;
+  height: 35vh;
   background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
   opacity: 0;
   border: 2px solid transparent;
@@ -760,13 +772,18 @@ button.abilityButton:hover {
   border-color: white;
   cursor: pointer;
   font-size: 1.3vw;
-  margin-left: 1vw;
-  margin-bottom: 10vh;
-  margin-top: -5vh;
+  margin-top: 2vh;
 }
 .buttonEnd:hover {
   cursor: pointer;
   font-size: 1.5vw;
+}
+
+.buttonsEnd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .home-container {
@@ -893,4 +910,7 @@ button.abilityButton:hover {
 
 * {
   cursor: default;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }/*# sourceMappingURL=style.css.map */

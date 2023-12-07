@@ -86,9 +86,9 @@ useEffect(() => {
       return `${attacker.Name} used Heal and recovered ${recover} Health Points.`;
     },
     block: (attacker, defender) => {
-      const extraHP = attacker.defense; // Modify as needed.
+      const extraHP = attacker.Defense; // Modify as needed.
       attacker.extraHP = extraHP;
-      return `${attacker.Name} used Shield and gained a ${extraHP} points of shield.`;
+      return `${attacker.Name} used Shield to protect himself from the next attack.`;
     },
   };
 
@@ -112,7 +112,7 @@ useEffect(() => {
 
   const calculateRecover = (Strength, Crit) => {
     const baseRecover =
-      Math.floor(Math.random() * (Strength[1] - Strength[0] + 1)) + Strength[0];
+      Math.floor(Math.random() * (parseInt(Strength[1].N) - parseInt(Strength[0].N) +1)) + parseInt(Strength[0].N);
     const randomNumber = Math.floor(Math.random() * 2) + 1;
     let critMultiplier;
     if (randomNumber === 1) {
@@ -196,7 +196,7 @@ useEffect(() => {
               <button className="abilityButton"
                 onClick={() => chooseAbility("Block", attacker, defender)}
               >
-                Block
+                Shield
               </button>
             </div>
           );
