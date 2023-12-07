@@ -15,7 +15,7 @@
 
 .home-content {
     font-family: 'Trade Winds', serif;
-    font-size: 1.5rem;
+    font-size: 2vw;
     color: #fff;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -29,10 +29,10 @@
     border: none;
     background-size: 120% auto;
     background-image: linear-gradient(315deg, #FEA1A1 0%, #ECCDB4 75%);
-    width: 50vh;
-    height: 6vh;
+    width: 40vw;
+    height: 8vh;
     top: 60%;
-    left: 37%;
+    left: 30vw;
     transform: translate(-50%, -50%);
 
 }

@@ -4,7 +4,13 @@ body {
     background: linear-gradient(to bottom, #ECCDB4, #FEA1A1);
     color: rgb(255, 255, 255);
     overflow: hidden;
+    font-size: 1rem;
     font-family: 'Josefin Sans', sans-serif;
+
+    @media (max-width: 932px) {
+        font-size: 0.8rem;
+    }
+
 }
 
 .gallery {
@@ -41,6 +47,11 @@ body {
     align-items: center;
     height: 92vh;
     z-index: 1;
+
+
+    @media (max-width: 932px) {
+        font-size: 0.8rem;
+    }
 }
 
 
@@ -58,20 +69,44 @@ body {
 
 .character-selected1 .img-character1, 
 .character-selected2 .img-character2 {
-    width: 600px;
-    height: 700px;
+    width: 400px;
+    height: 500px;
     object-fit: cover;
+
+    @media (max-width: 932px) {
+        width: 250px;
+        height: 350px;
+    }
     
 }
 
-.character-selected1 .p-name, 
-.character-selected2 .p-name {
-    font-size: 4rem;
+.img-character2 {
+    margin-right: 200px;
+
+    @media (max-width: 932px) {
+        width: 150px;
+        height: 250px;
+        margin-right: 250px;
+    }
+}
+
+.img-character1 {
+    margin-left: 200px;
+
+    @media (max-width: 932px) {
+        width: 250px;
+        height: 350px;
+        margin-left: 250px;
+    }
+}
+
+.character-selected1 .p-name1, 
+.character-selected2 .p-name2 {
+    font-size: 3rem;
     position: absolute;
     color: #fff; 
     padding: 5px; 
     bottom: 0; 
-    left: 0; 
     width: 100%;
     box-sizing: border-box;
     text-align: center; 
@@ -80,6 +115,19 @@ body {
     background-repeat: no-repeat; 
     background-size: contain; 
     background-position: center;
+
+    @media (max-width: 932px) {
+        font-size: 2rem;
+    }
+
+}
+
+.p-name1 {
+    margin-left: 130px;
+}
+
+.p-name2 {
+    margin-left: -100px;
 }
 
 .charcters-selection {
@@ -102,8 +150,13 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 60vw;
+    width: 90vw;
     z-index: 2;
+
+    @media (max-width: 932px) {
+        width: 100vw; 
+    }
+
 }
 
 h1 {
@@ -137,6 +190,25 @@ h1 {
     background-size: 120% auto;
     background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
 }
+
+@media (max-width: 932px) {
+    .character-filter {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        gap: 5px;
+        margin-bottom: 10px;
+    }
+
+    .button-filter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 80px;
+        font-size: 0.8rem;
+    }
+}
+
 
 button:hover {
     background-position: right center;
@@ -175,6 +247,11 @@ button:active {
     height: 150px;
     object-fit: cover;
     border-radius: 10px;
+
+    @media (max-width: 932px) {
+        width: 80px; 
+        height: 120px; 
+    }
 }
 
 .character-overlay {
@@ -240,10 +317,15 @@ button:active {
     display: flex;
     flex-direction: column;
     position: fixed;
-    bottom: 200px;
+    bottom: 185px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
+
+    @media (max-width: 932px) {
+        bottom: 175px; 
+    }
+
 }
 
 .slide-in {
@@ -258,10 +340,8 @@ button:active {
     text-align: center;
     top: 150px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%);  
     
-    
-
     .ready {
         font-family: 'Trade Winds', serif;
         font-size: 1.2rem;
@@ -276,15 +356,21 @@ button:active {
         background-size: 120% auto;
         background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
         width: 40vh;
-        height: 4vh;
+        height: 5vh;
+
+        @media (max-width: 932px) {
+            font-size: 0.8rem;
+        }
     }
+
+
 }
 
 .button-arena {
     font-family: 'Trade Winds', serif;
-    font-size: 5.5rem;
+    font-size: 4rem;
     width: 100vw;
-    height: 200px;
+    height: 150px;
     color: #fff;
     padding: 5px 10px;
     cursor: pointer;
@@ -297,6 +383,13 @@ button:active {
     opacity: 0;
     border: 2px solid transparent;
     animation: slideIn 1s forwards;
+
+    @media (max-width: 932px) {
+        margin-bottom: -50px;
+        font-size: 3rem;
+        width: 100vw;
+        height: 130px;
+    }
 
 }
 

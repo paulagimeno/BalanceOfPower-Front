@@ -6,7 +6,13 @@ body {
   background: linear-gradient(to bottom, #ECCDB4, #FEA1A1);
   color: rgb(255, 255, 255);
   overflow: hidden;
+  font-size: 1rem;
   font-family: "Josefin Sans", sans-serif;
+}
+@media (max-width: 932px) {
+  body {
+    font-size: 0.8rem;
+  }
 }
 
 .gallery {
@@ -43,6 +49,11 @@ body {
   height: 92vh;
   z-index: 1;
 }
+@media (max-width: 932px) {
+  .character-container {
+    font-size: 0.8rem;
+  }
+}
 
 .character-selected1 {
   position: absolute;
@@ -56,20 +67,48 @@ body {
 
 .character-selected1 .img-character1,
 .character-selected2 .img-character2 {
-  width: 600px;
-  height: 700px;
+  width: 400px;
+  height: 500px;
   -o-object-fit: cover;
      object-fit: cover;
 }
+@media (max-width: 932px) {
+  .character-selected1 .img-character1,
+  .character-selected2 .img-character2 {
+    width: 250px;
+    height: 350px;
+  }
+}
 
-.character-selected1 .p-name,
-.character-selected2 .p-name {
-  font-size: 4rem;
+.img-character2 {
+  margin-right: 200px;
+}
+@media (max-width: 932px) {
+  .img-character2 {
+    width: 150px;
+    height: 250px;
+    margin-right: 250px;
+  }
+}
+
+.img-character1 {
+  margin-left: 200px;
+}
+@media (max-width: 932px) {
+  .img-character1 {
+    width: 250px;
+    height: 350px;
+    margin-left: 250px;
+  }
+}
+
+.character-selected1 .p-name1,
+.character-selected2 .p-name2 {
+  font-size: 3rem;
   position: absolute;
   color: #fff;
   padding: 5px;
   bottom: 0;
-  left: 0;
   width: 100%;
   box-sizing: border-box;
   text-align: center;
@@ -77,6 +116,20 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+}
+@media (max-width: 932px) {
+  .character-selected1 .p-name1,
+  .character-selected2 .p-name2 {
+    font-size: 2rem;
+  }
+}
+
+.p-name1 {
+  margin-left: 130px;
+}
+
+.p-name2 {
+  margin-left: -100px;
 }
 
 .charcters-selection {
@@ -98,8 +151,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 60vw;
+  width: 90vw;
   z-index: 2;
+}
+@media (max-width: 932px) {
+  .box-gallery {
+    width: 100vw;
+  }
 }
 
 h1 {
@@ -132,6 +190,22 @@ h1 {
   background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
 }
 
+@media (max-width: 932px) {
+  .character-filter {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  .button-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 80px;
+    font-size: 0.8rem;
+  }
+}
 button:hover {
   background-position: right center;
 }
@@ -168,6 +242,12 @@ button:active {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 10px;
+}
+@media (max-width: 932px) {
+  .character-img {
+    width: 80px;
+    height: 120px;
+  }
 }
 
 .character-overlay {
@@ -232,10 +312,15 @@ button:active {
   display: flex;
   flex-direction: column;
   position: fixed;
-  bottom: 200px;
+  bottom: 185px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
+}
+@media (max-width: 932px) {
+  .characters-button {
+    bottom: 175px;
+  }
 }
 
 .slide-in {
@@ -266,14 +351,19 @@ button:active {
   background-size: 120% auto;
   background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
   width: 40vh;
-  height: 4vh;
+  height: 5vh;
+}
+@media (max-width: 932px) {
+  .button-ready .ready {
+    font-size: 0.8rem;
+  }
 }
 
 .button-arena {
   font-family: "Trade Winds", serif;
-  font-size: 5.5rem;
+  font-size: 4rem;
   width: 100vw;
-  height: 200px;
+  height: 150px;
   color: #fff;
   padding: 5px 10px;
   cursor: pointer;
@@ -286,6 +376,14 @@ button:active {
   opacity: 0;
   border: 2px solid transparent;
   animation: slideIn 1s forwards;
+}
+@media (max-width: 932px) {
+  .button-arena {
+    margin-bottom: -50px;
+    font-size: 3rem;
+    width: 100vw;
+    height: 130px;
+  }
 }
 
 .rotate-button {
@@ -311,6 +409,7 @@ button:active {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 
 .main {
@@ -324,10 +423,21 @@ button:active {
 .video-container {
   position: absolute;
   top: 0;
-  left: -10PX;
   width: 102%;
-  height: 100%;
+  left: -1vw;
+  height: 102%;
   z-index: -1;
+}
+@media (max-width: 932px) {
+  .video-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 100%;
+    z-index: -1;
+    overflow-y: hidden;
+  }
 }
 
 #video-background {
@@ -360,10 +470,10 @@ button:active {
   height: 70%;
   width: 30vw;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   overflow-x: visible;
-  overflow-y: visible;
+  overflow-y: hidden;
 }
 .arena_fighters img {
   -o-object-fit: cover;
@@ -399,8 +509,8 @@ button:active {
 }
 
 .startFight {
-  height: 50px;
-  width: 300px;
+  height: 7vh;
+  width: 20vw;
   border-radius: 30px;
   background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
   color: white;
@@ -410,8 +520,8 @@ button:active {
   font-size: 1vw;
 }
 .startFight:hover {
-  height: 55px;
-  width: 305px;
+  height: 7.5vh;
+  width: 21vw;
   cursor: pointer;
   font-size: 1.1vw;
 }
@@ -577,12 +687,13 @@ button.abilityButton {
   border-color: white;
   border-style: solid;
   border-radius: 10px;
-  height: 30px;
-  width: 70px;
+  height: 6vh;
+  width: 10vw;
   text-align: center;
   color: white;
   border-width: 2px;
   font-family: "Trade Winds", serif;
+  font-size: 1.5vw;
 }
 button.abilityButton:hover {
   background-image: linear-gradient(315deg, #ECCDB4 0%, #FEA1A1 75%);
@@ -593,6 +704,7 @@ button.abilityButton:hover {
 
 .hpText {
   margin: 0%;
+  font-size: 2vw;
 }
 
 .losingFighter {
@@ -604,12 +716,11 @@ button.abilityButton:hover {
   filter: drop-shadow(12px 8px 4px #fffb0f);
 }
 
-/* Estilos CSS personalizados para el mensaje del ganador */
 .winner-message-container {
-  padding: 5px 10px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   outline: none;
@@ -617,7 +728,7 @@ button.abilityButton:hover {
   background-size: 120% auto;
   position: fixed;
   width: 100vw;
-  height: 200px;
+  height: 35vh;
   background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
   opacity: 0;
   border: 2px solid transparent;
@@ -651,6 +762,30 @@ button.abilityButton:hover {
     opacity: 1;
   }
 }
+.buttonEnd {
+  height: 7vh;
+  width: 18vw;
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.616);
+  color: white;
+  font-family: "Trade Winds", serif;
+  border-color: white;
+  cursor: pointer;
+  font-size: 1.3vw;
+  margin-top: 2vh;
+}
+.buttonEnd:hover {
+  cursor: pointer;
+  font-size: 1.5vw;
+}
+
+.buttonsEnd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .home-container {
   display: flex;
   justify-content: center;
@@ -668,7 +803,7 @@ button.abilityButton:hover {
 
 .home-content {
   font-family: "Trade Winds", serif;
-  font-size: 1.5rem;
+  font-size: 2vw;
   color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -682,10 +817,10 @@ button.abilityButton:hover {
   border: none;
   background-size: 120% auto;
   background-image: linear-gradient(315deg, #FEA1A1 0%, #ECCDB4 75%);
-  width: 50vh;
-  height: 6vh;
+  width: 40vw;
+  height: 8vh;
   top: 60%;
-  left: 37%;
+  left: 30vw;
   transform: translate(-50%, -50%);
 }
 
@@ -775,4 +910,7 @@ button.abilityButton:hover {
 
 * {
   cursor: default;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }/*# sourceMappingURL=style.css.map */

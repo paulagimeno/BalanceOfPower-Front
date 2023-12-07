@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { w3cwebsocket } from 'websocket';
 import { Link } from 'react-router-dom';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import MenuHeader from '../MenuHeader/MenuHeader';
 
-const CharactersGallery = ({ data }) => {
+const CharactersGallery = () => {
     const [characters, setCharacters] = useState([]);
     const [fighter1, setFighter1] = useState(null);
     const [fighter2, setFighter2] = useState(null);
@@ -15,12 +15,24 @@ const CharactersGallery = ({ data }) => {
     const [isMoveToArena, setIsMoveToArena] = useState(false);
 
     useEffect(() => {
-        const getCharacter = async () => {
-            const { data } = await axios('http://localhost:5051/characters/characters');
-            setCharacters(data);
-        }
+        const client = new w3cwebsocket('wss://3xdolcyby2.execute-api.eu-west-3.amazonaws.com/dev/');
+        client.onopen = () => {
+            console.log('Tas conetao')
 
-        getCharacter();
+            const message = JSON.stringify({ action: 'GetAll'});
+            client.send(message);
+        }
+        client.onmessage = (message) => {
+            const characters = JSON.parse(message.data);
+            console.log('Personajes: ', characters)
+            setCharacters(characters);
+        }
+        client.onclose = () => {
+            console.log('Ya no tas conectao')
+        }
+        return () => {
+            client.close();
+        }
     }, []);
 
     const handleFighters = (character) => {
@@ -39,11 +51,16 @@ const CharactersGallery = ({ data }) => {
         }
     }
 
-    const filterCharacters = (category) => {
-        setFilter(category);
+    const extractAttributeValue = (attribute) => {
+        const type = Object.keys(attribute)[0];
+        return attribute[type];
+    };
+
+    const filterCharacters = (Category) => {
+        setFilter(Category);
     }
 
-    const filteredCharacters = filter === "All" ? characters : characters.filter((character) => character.category === filter);
+    const filteredCharacters = filter === "All" ? characters : characters.filter((character) => extractAttributeValue(character.Category) === filter);
 
     useEffect(() => {
 
@@ -60,6 +77,8 @@ const CharactersGallery = ({ data }) => {
         setIsMoveToArena(true);
     }
 
+    
+
     return (
         <div className='gallery'>
             <div className='video-container'>
@@ -74,8 +93,8 @@ const CharactersGallery = ({ data }) => {
                         <div className='charcters-selection'>
                             {fighter1 && (
                                 <div className="character-selected1">
-                                    <img className='img-character1' src={fighter1.fullBodyImage} alt={fighter1.name} />
-                                    <p className='p-name'>{fighter1.name}</p>
+                                    <img className='img-character1' src={extractAttributeValue(fighter1.FullBodyImage)} alt={extractAttributeValue(fighter1.Name)} />
+                                    <p className='p-name1'>{extractAttributeValue(fighter1.Name)}</p>
                                 </div>
                             )}
                         </div>
@@ -93,14 +112,15 @@ const CharactersGallery = ({ data }) => {
                             <SimpleBar style={{ maxHeight: "65vh", width: "50%" }}>
                                 <div className="character-gallery">
                                     {filteredCharacters.map((item, i) => (
+                                        
                                         <div
                                             className={`character-item ${fighter1 === item ? "fighter1" : ""} ${fighter2 === item ? "fighter2" : ""}`}
                                             key={i}
                                             onClick={() => handleFighters(item)}
                                         >
-                                            <img className="character-img" src={item.avatarImage} alt="" />
+                                            <img className="character-img" src={extractAttributeValue(item.AvatarImage)} alt="" />
                                             <div className="character-overlay">
-                                                <div className="character-name">{item.name}</div>
+                                                <div className="character-name">{extractAttributeValue(item.Name)}</div>
                                             </div>
                                         </div>
                                     ))}
@@ -113,8 +133,8 @@ const CharactersGallery = ({ data }) => {
                         <div className='charcters-selection'>
                             {fighter2 && (
                                 <div className="character-selected2">
-                                    <img className='img-character2' src={fighter2.fullBodyImage} alt={fighter2.name} />
-                                    <p className='p-name'>{fighter2.name}</p>
+                                    <img className='img-character2' src={extractAttributeValue(fighter2.FullBodyImage)} alt={extractAttributeValue(fighter2.Name)} />
+                                    <p className='p-name2'>{extractAttributeValue(fighter2.Name)}</p>
                                 </div>
                             )}
                         </div>
