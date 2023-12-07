@@ -6,7 +6,6 @@ export default function FightingArena() {
   const location = useLocation();
   const { fighter1, fighter2 } = location.state;
   const [battleStarted, setBattleStarted] = useState(false);
-  console.log(location.state);
   const [battleSteps, setBattleSteps] = useState([]);
   const [currentStep, setCurrentStep] = useState(0);
   const [playerChoice, setPlayerChoice] = useState("");
@@ -54,18 +53,12 @@ const [fighter1maxHp, setFighter1maxHp] = useState(newFighter1.Hp);
 const [fighter2maxHp, setFighter2maxHp] = useState(newFighter2.Hp);
 
 useEffect(() => {
-  console.log('newFighter2.Hp:', newFighter2.Hp);
   setFighter2CurrentHp((prevHp) => newFighter2.Hp);
 }, [newFighter2.Hp]);
 
 useEffect(() => {
-  console.log('newFighter1.Hp:', newFighter1.Hp);
   setFighter1CurrentHp((prevHp) => newFighter1.Hp);
 }, [newFighter1.Hp]);
-
-console.log(newFighter1)
-console.log("max hp", fighter1maxHp)
-console.log('anotha one', newFighter1.Hp)
 
   const abilities = {
     strike: (attacker, defender) => {
@@ -100,9 +93,6 @@ console.log('anotha one', newFighter1.Hp)
   };
 
   const calculateDamage = (Strength, Crit, Defense) => {
-    console.log("Strength is", Strength)
-    console.log("holita", Strength[1].N)
-    console.log("holiwis", Strength[0].N)
     const baseDamage =
       Math.floor(Math.random() * (parseInt(Strength[1].N) - parseInt(Strength[0].N) +1)) + parseInt(Strength[0].N);
     const randomNumber = Math.floor(Math.random() * 2) + 1;
@@ -112,8 +102,6 @@ console.log('anotha one', newFighter1.Hp)
     } else {
       critMultiplier = 0;
     }
-    console.log("baseDamage is:", baseDamage);
-    console.log("crit is:", critMultiplier);
     const damage = (
       baseDamage * 2 +
       baseDamage * critMultiplier -
@@ -165,8 +153,6 @@ console.log('anotha one', newFighter1.Hp)
     setDefender(defender);
 
     const battleStep = (attacker, defender) => {
-      console.log("currentito hp", newFighter1.Hp)
-      console.log("holita hp", newFighter2.Hp)
       if (newFighter1.Hp > 0 && newFighter2.Hp > 0) {
         steps.push(`It's ${attacker.Name}'s turn.`);
         steps.push("Choose your next move:");
@@ -233,7 +219,6 @@ console.log('anotha one', newFighter1.Hp)
 
     const chooseAbility = (data, attacker, defender) => {
       setPlayerChoice(data);
-      console.log(data);
       executeAttack(data, attacker, defender);
     };
 
@@ -250,7 +235,6 @@ console.log('anotha one', newFighter1.Hp)
           ); // Reset the extraHP after it's consumed.
           defender.extraHP = 0;
         }
-        console.log(steps);
         setPlayerChoice("");
         setFighter1CurrentHp(newFighter1.Hp);
         setFighter2CurrentHp(newFighter2.Hp);
@@ -258,14 +242,12 @@ console.log('anotha one', newFighter1.Hp)
         defender = attacker === newFighter2 ? newFighter1 : newFighter2;
         setAttacker(attacker);
         setDefender(defender);
-        console.log(`now the attacker will be ${attacker.Name}`);
         battleStep(attacker, defender);
       } else if (playerChoice === "Execute") {
         steps.pop();
         const abilityResult = abilities.execute(attacker, defender);
         
         steps.push(abilityResult);
-        console.log(steps);
         setPlayerChoice("");
         setFighter1CurrentHp(newFighter1.Hp);
         setFighter2CurrentHp(newFighter2.Hp);
@@ -316,7 +298,6 @@ console.log('anotha one', newFighter1.Hp)
   };
 
   useEffect(() => {
-    console.log('winner is:', winner)
   }, [winner])
 
   useEffect(() => {
@@ -325,8 +306,6 @@ console.log('anotha one', newFighter1.Hp)
       const timer = setInterval(() => {
         if (currentStep + 1 < battleSteps.length)
           setCurrentStep(currentStep + 1);
-        console.log(currentStep);
-        console.log("por favor", newFighter2.Hp)
       }, 1000);
 
       return () => clearInterval(timer);
@@ -381,7 +360,6 @@ console.log('anotha one', newFighter1.Hp)
   useEffect(() => {
     const fighter1Percentage = (Math.max(fighter1CurrentHp, 0) / fighter1maxHp) * 100;
     const fighter2Percentage = (Math.max(fighter2CurrentHp, 0) / fighter2maxHp) * 100;
-    console.log('inside hp:', newFighter1.Hp)
 
     const fighter1HealthBar = document.getElementById("fighter1HealthBar");
     if (fighter1HealthBar) {
