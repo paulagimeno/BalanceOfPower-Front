@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import MenuHeader from "../../components/MenuHeader/MenuHeader";
 
 export default function FightingArena() {
@@ -33,6 +33,15 @@ export default function FightingArena() {
     return processedFighter;
   };
 
+  const navigate = useNavigate();
+
+  const handleBackToCS= () => {
+    navigate('/CharacterSelection');
+  };
+
+  const handleRepeatMatch= () => {
+    window.location.reload();
+  };
 
 
 const newFighter1 = processFighterObject(fighter1);
@@ -209,17 +218,18 @@ console.log('anotha one', newFighter1.Hp)
 
         executeAttack(playerChoice, attacker, defender);
 
-        setFighter1CurrentHp(newFighter1.Hp);
-        setFighter2CurrentHp(newFighter2.Hp);
+        
 
       } else if (newFighter1.Hp <= 0 || newFighter2.Hp <= 0) {
-        const won = newFighter1.Hp > 0 ? newFighter1 : newFighter2;
+        const won = fighter1CurrentHp > 0 ? newFighter1 : newFighter2;
         const lost = won === newFighter1 ? newFighter2 : newFighter1;
         setWinner(won);
         setLoser(lost);
         steps.push(`${won.Name} won the battle!`);
       }
     };
+
+    
 
     const chooseAbility = (data, attacker, defender) => {
       setPlayerChoice(data);
@@ -242,6 +252,8 @@ console.log('anotha one', newFighter1.Hp)
         }
         console.log(steps);
         setPlayerChoice("");
+        setFighter1CurrentHp(newFighter1.Hp);
+        setFighter2CurrentHp(newFighter2.Hp);
         attacker = attacker === newFighter1 ? newFighter2 : newFighter1;
         defender = attacker === newFighter2 ? newFighter1 : newFighter2;
         setAttacker(attacker);
@@ -255,6 +267,8 @@ console.log('anotha one', newFighter1.Hp)
         steps.push(abilityResult);
         console.log(steps);
         setPlayerChoice("");
+        setFighter1CurrentHp(newFighter1.Hp);
+        setFighter2CurrentHp(newFighter2.Hp);
         attacker = attacker === newFighter1 ? newFighter2 : newFighter1;
         defender = attacker === newFighter2 ? newFighter1 : newFighter2;
         setAttacker(attacker);
@@ -268,6 +282,8 @@ console.log('anotha one', newFighter1.Hp)
         steps.push(abilityResult);
        
         setPlayerChoice("");
+        setFighter1CurrentHp(newFighter1.Hp);
+        setFighter2CurrentHp(newFighter2.Hp);
         attacker = attacker === newFighter1 ? newFighter2 : newFighter1;
         defender = attacker === newFighter2 ? newFighter1 : newFighter2;
         setAttacker(attacker);
@@ -281,6 +297,8 @@ console.log('anotha one', newFighter1.Hp)
         steps.push(abilityResult);
       
         setPlayerChoice("");
+        setFighter1CurrentHp(newFighter1.Hp);
+        setFighter2CurrentHp(newFighter2.Hp);
         attacker = attacker === newFighter1 ? newFighter2 : newFighter1;
         defender = attacker === newFighter2 ? newFighter1 : newFighter2;
         setAttacker(attacker);
@@ -296,6 +314,10 @@ console.log('anotha one', newFighter1.Hp)
   const scrollChatToBottom = () => {
     chatContainerRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    console.log('winner is:', winner)
+  }, [winner])
 
   useEffect(() => {
     scrollChatToBottom();
@@ -390,7 +412,7 @@ console.log('anotha one', newFighter1.Hp)
           </p>
         </div>
         <div className="arena_fighters">
-          <img className={`fighters ${newFighter1 === winner ? 'winningFighter' : newFighter1 === loser ? 'losingFighter' : ''}`} src={newFighter1.FullBodyImage} alt="" />
+          <img className={`fighters ${newFighter1.Name === winner?.Name ? 'winningFighter' : newFighter1.Name === loser?.Name ? 'losingFighter' : ''}`} src={newFighter1.FullBodyImage} alt="" />
         </div>
         <div className="arena_hps">
           <div className="health-bar">
@@ -428,7 +450,7 @@ console.log('anotha one', newFighter1.Hp)
           </p>
         </div>
         <div className="arena_fighters">
-          <img className={`fighters ${newFighter2 === winner ? 'winningFighter' : newFighter2 === loser ? 'losingFighter' : ''}`} src={newFighter2.FullBodyImage} alt="" />
+          <img className={`fighters ${newFighter2.Name === winner?.Name ? 'winningFighter' : newFighter2.Name === loser?.Name ? 'losingFighter' : ''}`} src={newFighter2.FullBodyImage} alt="" />
         </div>
         <div className="arena_hps">
           
@@ -443,9 +465,13 @@ console.log('anotha one', newFighter1.Hp)
         </div>
       </div>
       <div className="holita">
-      {winner === newFighter1 || winner === newFighter2 ? ( 
+      {winner?.Name === newFighter1.Name || winner?.Name === newFighter2.Name ? ( 
         <div className="winner-message-container">
             <p className="winner-text">{`${winner.Name} won the battle!`}</p>
+            <div className="buttonsEnd">
+            <button type="button" onClick={handleBackToCS} className="buttonEnd">Character selection</button>
+            <button type="button" onClick={handleRepeatMatch} className="buttonEnd">Start over</button>
+            </div>
         </div>
       ) : "" }
       </div>
