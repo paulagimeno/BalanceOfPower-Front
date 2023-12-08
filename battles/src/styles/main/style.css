@@ -8,6 +8,7 @@ body {
   overflow: hidden;
   font-size: 1rem;
   font-family: "Josefin Sans", sans-serif;
+  height: 100vh;
 }
 @media (max-width: 932px) {
   body {
@@ -26,6 +27,17 @@ body {
   justify-content: center;
   position: relative;
   overflow: hidden;
+  height: 100vh;
+}
+
+.under-cs {
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 932px) {
+  .under-cs {
+    height: 68vh;
+  }
 }
 
 .video-container {
@@ -33,7 +45,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: -1;
 }
 @media (max-width: 932px) {
@@ -48,81 +60,27 @@ body {
 
 #video-background {
   width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.character-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
   height: 100vh;
-  z-index: 1;
-}
-@media (max-width: 932px) {
-  .character-container {
-    font-size: 0.8rem;
-    height: 77vh;
-  }
-}
-
-.character-selected1 {
-  position: absolute;
-  z-index: 1;
-}
-
-.character-selected2 {
-  position: absolute;
-  z-index: 1;
-}
-
-.character-selected1 .img-character1,
-.character-selected2 .img-character2 {
-  width: 400px;
-  height: 500px;
   -o-object-fit: cover;
      object-fit: cover;
-}
-@media (max-width: 932px) {
-  .character-selected1 .img-character1,
-  .character-selected2 .img-character2 {
-    width: 250px;
-    height: 350px;
-  }
 }
 
 .img-character2 {
-  margin-right: 200px;
-}
-@media (max-width: 932px) {
-  .img-character2 {
-    width: 150px;
-    height: 250px;
-    margin-right: 250px;
-  }
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .img-character1 {
-  margin-left: 200px;
-}
-@media (max-width: 932px) {
-  .img-character1 {
-    width: 250px;
-    height: 350px;
-    margin-left: 250px;
-  }
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .character-selected1 .p-name1,
 .character-selected2 .p-name2 {
   font-size: 3rem;
-  position: absolute;
   color: #fff;
-  padding: 5px;
-  bottom: 0;
   width: 100%;
   box-sizing: border-box;
   text-align: center;
@@ -138,20 +96,14 @@ body {
   }
 }
 
-.p-name1 {
-  margin-left: 130px;
-}
-
-.p-name2 {
-  margin-left: -100px;
-}
-
 .charcters-selection {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: "Trade Winds", serif;
-  gap: 10px;
+  width: 30vw;
+}
+@media (max-width: 932px) {
+  .charcters-selection {
+    height: 77vh;
+  }
 }
 
 .character-selected1,
@@ -159,18 +111,25 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
+  justify-content: space-evenly;
+}
+@media (max-width: 932px) {
+  .character-selected1,
+  .character-selected2 {
+    height: 68vh;
+    bottom: 0;
+  }
 }
 
 .box-gallery {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 90vw;
-  z-index: 2;
+  width: 40vw;
 }
 @media (max-width: 932px) {
   .box-gallery {
-    width: 100vw;
+    width: 40vw;
   }
 }
 
@@ -220,6 +179,35 @@ h1 {
     font-size: 0.8rem;
   }
 }
+@media (max-width: 932px) {
+  .this-name {
+    height: 15vh;
+    margin-top: -3vh;
+  }
+}
+
+@media (max-width: 932px) {
+  .this-image {
+    height: 53vh;
+    overflow: hidden;
+  }
+}
+
+.gallery-cs {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  height: 92vh;
+}
+@media (max-width: 932px) {
+  .gallery-cs {
+    height: 77vh;
+  }
+}
+
 button:hover {
   background-position: right center;
 }
@@ -328,7 +316,6 @@ button:active {
   position: fixed;
   bottom: 185px;
   left: 50%;
-  transform: translateX(-50%);
   z-index: 2;
 }
 @media (max-width: 932px) {
