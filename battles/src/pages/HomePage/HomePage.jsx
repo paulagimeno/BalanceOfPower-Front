@@ -14,13 +14,15 @@ export default function HomePage() {
 
     return (
         <div className="home-container">
+            <div className="video-container">
             <video id="video-background" autoPlay muted loop>
                 <source
                     src="https://res.cloudinary.com/dvmkyxyc0/video/upload/v1699307706/FondoLoopHome_x5f2lv.mp4"
                     type="video/mp4"
                 />
             </video>
-
+            </div>
+            <div className="home-all">
             <div className="logoImg">
                 <img
                     className="logo-name puff-in-center"
@@ -28,12 +30,14 @@ export default function HomePage() {
                     alt="logo"
                 />
             </div>
-
+            <div className="home-button">
             {showButton && (
-                <Link to="/CharacterSelection" className="no-decoration">
-                    <div className="home-content fade-in-fwd">Choose your characters!</div>
+                <Link to="/CharacterSelection">
+                    <button className="home-content fade-in-fwd" type="button">Choose your characters!</button>
                 </Link>
             )}
+            </div>
+            </div>
         </div>
     );
 }

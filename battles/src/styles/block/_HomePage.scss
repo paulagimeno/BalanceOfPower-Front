@@ -1,14 +1,9 @@
 .home-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
-    background-color: #000;
-
 }
 
 #video-background {
-    width: 100%;
+    width: 100vw;
     height: 100%;
     object-fit: cover;
 }
@@ -19,22 +14,15 @@
     color: #fff;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     outline: none;
     border-radius: 15px;
+    border-color: transparent;
     border: none;
-    background-size: 120% auto;
     background-image: linear-gradient(315deg, #FEA1A1 0%, #ECCDB4 75%);
     width: 40vw;
     height: 8vh;
-    top: 60%;
-    left: 30vw;
     transform: translate(-50%, -50%);
-
+    flex-wrap: wrap;
 }
 
 .home-content:hover {
@@ -42,19 +30,19 @@
 
 }
 
-@-webkit-keyframes fade-in-fwd {
-    0% {
-        -webkit-transform: translateZ(-80px);
-        transform: translateZ(-80px);
-        opacity: 0;
-    }
+// @-webkit-keyframes fade-in-fwd {
+//     0% {
+//         -webkit-transform: translateZ(-80px);
+//         transform: translateZ(-80px);
+//         opacity: 0;
+//     }
 
-    100% {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        opacity: 1;
-    }
-}
+//     100% {
+//         -webkit-transform: translateZ(0);
+//         transform: translateZ(0);
+//         opacity: 1;
+//     }
+// }
 
 @keyframes fade-in-fwd {
     0% {
@@ -78,13 +66,10 @@
 
 //Logo
 .logoImg {
-    position: absolute;
-    top: 45%;
-    left: 49%;
-    transform: translate(-50%, -50%);
+    // transform: translate(-50%, -50%);
 
     .logo-name {
-        width: 70vh;
+        width: 40vw;
     }
 
     .puff-in-center {
@@ -104,4 +89,15 @@
         filter: blur(0);
         opacity: 1;
     }
+}
+
+
+.home-all{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }

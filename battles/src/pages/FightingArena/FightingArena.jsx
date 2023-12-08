@@ -207,7 +207,7 @@ useEffect(() => {
         
 
       } else if (newFighter1.Hp <= 0 || newFighter2.Hp <= 0) {
-        const won = fighter1CurrentHp > 0 ? newFighter1 : newFighter2;
+        const won = newFighter1.Hp > 0 ? newFighter1 : newFighter2;
         const lost = won === newFighter1 ? newFighter2 : newFighter1;
         setWinner(won);
         setLoser(lost);

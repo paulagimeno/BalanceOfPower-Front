@@ -1,10 +1,9 @@
 import './App.css';
-import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Routes, HashRouter as Router } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage'
 import CharacterSelectionPage from './pages/CharacterSelectionPage/CharacterSelectionPage';
 import ShopPage from './pages/ShopPage/ShopPage';
 import FightingArena from './pages/FightingArena/FightingArena';
-import { useLocation } from 'react-router-dom';
 import "../src/styles/main/style.css";
 
 function App() {

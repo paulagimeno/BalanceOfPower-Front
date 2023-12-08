@@ -12,6 +12,10 @@ body {
 @media (max-width: 932px) {
   body {
     font-size: 0.8rem;
+    height: 85vh;
+    bottom: 0;
+    overflow: hidden;
+    position: absolute;
   }
 }
 
@@ -32,6 +36,15 @@ body {
   height: 100%;
   z-index: -1;
 }
+@media (max-width: 932px) {
+  .video-container {
+    font-size: 0.8rem;
+    height: 85vh;
+    bottom: 0;
+    overflow: hidden;
+    position: absolute;
+  }
+}
 
 #video-background {
   width: 100%;
@@ -46,12 +59,13 @@ body {
   justify-content: center;
   flex-direction: row;
   align-items: center;
-  height: 92vh;
+  height: 100vh;
   z-index: 1;
 }
 @media (max-width: 932px) {
   .character-container {
     font-size: 0.8rem;
+    height: 77vh;
   }
 }
 
@@ -403,48 +417,38 @@ button:active {
   transition: filter 0.5s;
 }
 
-.arena_body {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-}
-
 .main {
   width: 100vw;
-  height: 92vh;
+  height: 100vh;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
+@media (max-width: 932px) {
+  .main {
+    height: 77vh;
+  }
+}
 
 .video-container {
   position: absolute;
+  width: 100vw;
+  height: 102vh;
   top: 0;
-  width: 102%;
-  left: -1vw;
-  height: 102%;
+  left: 0;
   z-index: -1;
 }
 @media (max-width: 932px) {
   .video-container {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    left: 0;
-    height: 100%;
-    z-index: -1;
-    overflow-y: hidden;
+    height: 85vh;
   }
 }
 
 #video-background {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: fill;
+     object-fit: fill;
 }
 
 .arena_fighter1 {
@@ -503,6 +507,7 @@ button:active {
 
 .arena_battle {
   width: 40vw;
+  height: 77vh;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -532,7 +537,7 @@ button:active {
   align-items: center;
   background-size: calc(100% - var(--border-size) * 2) calc(100% - var(--border-size) * 2), cover;
   width: 40vw;
-  height: 87vh;
+  height: 72vh;
   background: rgba(106, 106, 106, 0.15);
   border-radius: 10px;
   backdrop-filter: blur(4.1px);
@@ -787,15 +792,11 @@ button.abilityButton:hover {
 }
 
 .home-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
-  background-color: #000;
 }
 
 #video-background {
-  width: 100%;
+  width: 100vw;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -807,26 +808,21 @@ button.abilityButton:hover {
   color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   outline: none;
   border-radius: 15px;
+  border-color: transparent;
   border: none;
-  background-size: 120% auto;
   background-image: linear-gradient(315deg, #FEA1A1 0%, #ECCDB4 75%);
   width: 40vw;
   height: 8vh;
-  top: 60%;
-  left: 30vw;
   transform: translate(-50%, -50%);
+  flex-wrap: wrap;
 }
 
 .home-content:hover {
   background-position: right center;
 }
+
 @keyframes fade-in-fwd {
   0% {
     transform: translateZ(-80px);
@@ -841,14 +837,8 @@ button.abilityButton:hover {
   animation: fade-in-fwd 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
-.logoImg {
-  position: absolute;
-  top: 45%;
-  left: 49%;
-  transform: translate(-50%, -50%);
-}
 .logoImg .logo-name {
-  width: 70vh;
+  width: 40vw;
 }
 .logoImg .puff-in-center {
   animation: puff-in-center 1.5s cubic-bezier(0.47, 0, 0.745, 0.715) both;
@@ -866,6 +856,16 @@ button.abilityButton:hover {
     opacity: 1;
   }
 }
+.home-all {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .menuHeader {
   width: 100vw;
   height: 8vh;
@@ -873,7 +873,8 @@ button.abilityButton:hover {
   justify-content: space-between;
   flex-direction: row;
   align-items: flex-start;
-  padding-top: 0.5vh;
+  padding-top: 1vh;
+  top: 0;
 }
 
 .volver {
