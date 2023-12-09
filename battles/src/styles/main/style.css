@@ -872,7 +872,7 @@ button.abilityButton:hover {
 }
 @media (max-width: 932px) {
   .menuHeader {
-    top: 15vh;
+    top: 0;
   }
 }
 
