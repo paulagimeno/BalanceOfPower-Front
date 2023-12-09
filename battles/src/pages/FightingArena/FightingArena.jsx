@@ -88,7 +88,7 @@ useEffect(() => {
     block: (attacker, defender) => {
       const extraHP = attacker.Defense; // Modify as needed.
       attacker.extraHP = extraHP;
-      return `${attacker.Name} used Shield to protect himself from the next attack.`;
+      return `${attacker.Name} used Shield to reduce incoming damage.`;
     },
   };
 
@@ -229,7 +229,7 @@ useEffect(() => {
         
         steps.push(abilityResult);
         if (defender.extraHP && defender.extraHP > 0) {
-          defender.Hp += defender.extraHP;
+          defender.Hp = (parseInt(defender.extraHP) + parseInt(defender.Hp)).toString();
           steps.push(
             `${defender.Name} blocked ${defender.extraHP} damage with the Shield.`
           ); // Reset the extraHP after it's consumed.

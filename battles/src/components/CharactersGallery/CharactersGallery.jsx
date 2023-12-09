@@ -11,7 +11,6 @@ const CharactersGallery = () => {
   const [fighter2, setFighter2] = useState(null);
   const [filter, setFilter] = useState("All");
   const [isGrayscale, setIsGrayscale] = useState(false);
-  const [isReady, setIsReady] = useState(false);
   const [isMoveToArena, setIsMoveToArena] = useState(false);
 
   useEffect(() => {
@@ -78,9 +77,12 @@ const CharactersGallery = () => {
 
   //READY!!
   const handleReady = () => {
-    setIsReady(true);
     setIsMoveToArena(true);
   };
+
+  useEffect (() => {
+    console.log('holis', isMoveToArena)
+  }, [isMoveToArena])
 
   return (
     <div className="gallery">
@@ -144,7 +146,7 @@ const CharactersGallery = () => {
             <div className="box-gallery">
               {/* <h1>Character Select</h1> */}
               <div className="character-content">
-                <SimpleBar style={{ maxHeight: "65vh", width: "40vw" }}>
+                <SimpleBar style={{ maxHeight: "68vh", width: "40vw" }}>
                   <div className="character-gallery">
                     {filteredCharacters.map((item, i) => (
                       <div
@@ -192,9 +194,10 @@ const CharactersGallery = () => {
        
         </div>
       </div>
-      <div className="characters-button">
-        {isReady ? (
+      
+        {fighter1 && fighter2 ? (
           isMoveToArena ? (
+            <div className="characters-button">
             <Link
               to="/FightingArena"
               state={{ fighter1: fighter1, fighter2: fighter2 }}
@@ -203,27 +206,18 @@ const CharactersGallery = () => {
                 Move to the fighting arena
               </button>
             </Link>
+            </div>
           ) : (
-            <button
-            type="button"
-              className="button-ready rotate-button"
-              onClick={handleReady}
-            >
-              Ready!
-            </button>
-          )
-        ) : (
-          fighter1 &&
-          fighter2 && (
             <div className="button-ready">
               <button className="ready" onClick={handleReady}>
-                Ready!
+                Ready !
               </button>
             </div>
           )
+        ) : (
+          ''
         )}
       </div>
-    </div>
   );
 };
 

@@ -30,6 +30,8 @@ body {
 .under-cs{
     display: flex;
     flex-direction: row;
+    height: 81vh;
+    bottom: 0;
     @media (max-width: 932px) {
         height: 68vh;
     }
@@ -127,6 +129,7 @@ body {
 .character-selected1,
 .character-selected2 {
     display: flex;
+    height: 81vh;
     flex-direction: column;
     text-align: center;
     justify-content: space-evenly;
@@ -158,8 +161,7 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-bottom: 20px;
-    
+    margin-top: 5vh;
 }
 
 .button-filter {
@@ -183,6 +185,7 @@ h1 {
 
 @media (max-width: 932px) {
     .character-filter {
+        margin-top: 0;
         display: flex;
         justify-content: center;
         flex-direction: row;
@@ -196,10 +199,12 @@ h1 {
         align-items: center;
         min-width: 80px;
         font-size: 0.8rem;
+        height: 6vh;
     }
 }
 
 .this-name{
+    height: 18vh;
     @media (max-width: 932px) {
  height: 15vh;
  margin-top: -3vh;
@@ -207,6 +212,7 @@ h1 {
 }
 
 .this-image{
+    height: 63vh;
     @media (max-width: 932px) {
     height: 53vh;
     overflow: hidden;
@@ -233,9 +239,9 @@ button:hover {
     background-position: right center;
 }
 
-button:active {
-    top: 2px;
-}
+// button:active {
+//     top: 2px;
+// }
 
 .character-content {
     display: flex;
@@ -297,14 +303,14 @@ button:active {
 
 .fighter1,
 .fighter2 {
-    border: 5px solid transparent;
-    transform: scale(1.1);
+    // border: 5px solid transparent;
+    // transform: scale(1.1);
     border-radius: 10px;
-    border-image-slice: 1;
+    // border-image-slice: 1;
 }
 
 .character-item:hover {
-    transform: scale(1.1);
+    // transform: scale(1.1);
     overflow: hidden;
     border-radius: 10px;
 }
@@ -336,13 +342,14 @@ button:active {
     display: flex;
     flex-direction: column;
     position: fixed;
-    bottom: 185px;
-    left: 50%;
-    transform: translateX(-50%);
+    height: 10vh;
+    width: 100vw;
+    // left: 50%;
+    // transform: translateX(-50%);
     z-index: 2;
 
     @media (max-width: 932px) {
-         bottom: 20vh;
+         height: 8vh;
     }
 
 }
@@ -353,13 +360,13 @@ button:active {
 
 .button-ready {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    position: absolute;
     text-align: center;
-    top: 150px;
-    left: 50%;
-    transform: translateX(-50%);  
+    width: 100vw;
+    height: 7vh;
+    bottom: 5vh;
+    position: fixed;
+    // transform: translateX(-50%);  
     
     .ready {
         font-family: 'Trade Winds', serif;
@@ -367,15 +374,18 @@ button:active {
         color: #fff;
         cursor: pointer;
         transition: all 0.3s ease;
-        position: relative;
-        display: inline-block;
+        position: fixed;
+        // display: inline-block;
         outline: none;
         border-radius: 5px;
         border: none;
-        background-size: 120% auto;
+        // background-size: 120% auto;
         background-image: linear-gradient(315deg, #EA047E 0%, #39B5E0 75%);
-        width: 40vh;
+        width: 30vw;
         height: 5vh;
+        bottom: 5vh;
+        z-index: 2;
+        left: 35vw;
 
         @media (max-width: 932px) {
             font-size: 0.8rem;
@@ -402,11 +412,14 @@ button:active {
     opacity: 0;
     border: 2px solid transparent;
     animation: slideIn 1s forwards;
+    bottom: 20vh;
+    transform: translateX(-50%);
 
     @media (max-width: 932px) {
         font-size: 3rem;
         width: 100vw;
         height: 100px;
+        bottom: 15vh;
     }
 
 }
