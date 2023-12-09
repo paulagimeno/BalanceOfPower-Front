@@ -1,7 +1,6 @@
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #ECCDB4, #FEA1A1);
     color: rgb(255, 255, 255);
     overflow: hidden;
     font-size: 1rem;
@@ -343,7 +342,7 @@ button:active {
     z-index: 2;
 
     @media (max-width: 932px) {
-        bottom: 175px; 
+         bottom: 20vh;
     }
 
 }
@@ -395,7 +394,7 @@ button:active {
     padding: 5px 10px;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: inline-block;
+    // display: inline-block;
     outline: none;
     border: none;
     background-size: 120% auto;
@@ -405,10 +404,9 @@ button:active {
     animation: slideIn 1s forwards;
 
     @media (max-width: 932px) {
-        margin-bottom: -50px;
         font-size: 3rem;
         width: 100vw;
-        height: 130px;
+        height: 100px;
     }
 
 }

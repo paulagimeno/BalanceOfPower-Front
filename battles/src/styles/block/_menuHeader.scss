@@ -7,6 +7,11 @@
     align-items: flex-start;
     padding-top: 1vh;
     top: 0;
+    position: fixed;
+
+    @media (max-width: 932px) {
+        top: 15vh; 
+    }
 }
 
 .volver{

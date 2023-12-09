@@ -3,7 +3,6 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to bottom, #ECCDB4, #FEA1A1);
   color: rgb(255, 255, 255);
   overflow: hidden;
   font-size: 1rem;
@@ -321,7 +320,7 @@ button:active {
 }
 @media (max-width: 932px) {
   .characters-button {
-    bottom: 175px;
+    bottom: 20vh;
   }
 }
 
@@ -370,7 +369,6 @@ button:active {
   padding: 5px 10px;
   cursor: pointer;
   transition: all 0.3s ease;
-  display: inline-block;
   outline: none;
   border: none;
   background-size: 120% auto;
@@ -381,10 +379,9 @@ button:active {
 }
 @media (max-width: 932px) {
   .button-arena {
-    margin-bottom: -50px;
     font-size: 3rem;
     width: 100vw;
-    height: 130px;
+    height: 100px;
   }
 }
 
@@ -407,10 +404,12 @@ button:active {
 
 .main {
   width: 100vw;
-  height: 100vh;
+  height: 92vh;
   display: flex;
   flex-direction: row;
   align-items: center;
+  bottom: 0;
+  position: fixed;
 }
 @media (max-width: 932px) {
   .main {
@@ -434,7 +433,7 @@ button:active {
 
 #video-background {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   -o-object-fit: fill;
      object-fit: fill;
 }
@@ -495,13 +494,14 @@ button:active {
 
 .arena_battle {
   width: 40vw;
-  height: 77vh;
+  height: 85vh;
   display: flex;
   justify-content: center;
   align-content: center;
 }
 
 .startFight {
+  margin-top: 42vh;
   height: 7vh;
   width: 20vw;
   border-radius: 30px;
@@ -525,7 +525,7 @@ button:active {
   align-items: center;
   background-size: calc(100% - var(--border-size) * 2) calc(100% - var(--border-size) * 2), cover;
   width: 40vw;
-  height: 72vh;
+  height: 95%;
   background: rgba(106, 106, 106, 0.15);
   border-radius: 10px;
   backdrop-filter: blur(4.1px);
@@ -547,11 +547,11 @@ button:active {
   display: flex;
   flex-direction: column;
   width: 98.5%;
-  height: 100%;
+  height: 95%;
   overflow: scroll;
   align-items: center;
   font-family: "Josefin Sans", sans-serif;
-  margin-top: 5%;
+  margin-top: 3%;
   padding-left: 0.5vw;
   padding-right: 0.5vw;
 }
@@ -863,6 +863,12 @@ button.abilityButton:hover {
   align-items: flex-start;
   padding-top: 1vh;
   top: 0;
+  position: fixed;
+}
+@media (max-width: 932px) {
+  .menuHeader {
+    top: 15vh;
+  }
 }
 
 .volver {
