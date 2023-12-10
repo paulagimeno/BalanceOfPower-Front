@@ -8,6 +8,19 @@
     object-fit: cover;
 }
 
+#landscapeMessage {
+    display: none;
+    position: fixed;
+    top: 20vh;
+    left: 0;
+    width: 100%;
+    background-color: #f8d7da; 
+    color: #721c24; 
+    text-align: center;
+    padding: 10px;
+    z-index: 1000; 
+}
+
 .home-content {
     font-family: 'Trade Winds', serif;
     font-size: 2vw;
