@@ -11,7 +11,8 @@
 #landscapeMessage {
     display: none;
     position: fixed;
-    top: 20vh;
+    top: 0vh;
+    height: 15vh;
     left: 0;
     width: 100%;
     background-color: #f8d7da; 
@@ -19,6 +20,7 @@
     text-align: center;
     padding: 10px;
     z-index: 1000; 
+    padding-top: 5vh;
 }
 
 .home-content {
